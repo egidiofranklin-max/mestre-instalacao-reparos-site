@@ -1,0 +1,986 @@
+/* ======================================================
+   ARQUIVO EXCLUSIVO PARA DISPOSITIVOS MÓVEIS (SMARTPHONES)
+   ======================================================
+   Todas as regras aqui assumem que a tela tem no máximo 932px.
+   Os conflitos com o PC acabaram! O uso de !important foi removido
+   quase totalmente pois este arquivo tem prioridade final no HTML.
+   ====================================================== */
+
+/* ======================================================
+   1. CABEÇALHO (CELULAR EM PÉ - PADRÃO)
+   ====================================================== */
+header {
+    height: 80px; 
+    padding: 0 10px;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.header-escondido {
+    transform: translateY(-100%);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-img {
+    height: 75px;
+    width: auto;
+}
+
+.botao-header-whats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f39c12;
+    font-size: 0px; 
+    padding: 0px;
+    width: 140px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.botao-header-whats::after {
+    content: "(61) 98214-8809"; 
+    font-size: 1.1rem; 
+    letter-spacing: -0.5px;
+    display: block;
+    color: #162e48;
+}
+
+/* ======================================================
+   2. BANNER PRINCIPAL (HERO)
+   ====================================================== */
+.hero-container {
+    flex-direction: column;
+    height: auto;
+    margin: 90px auto; 
+    width: 99%; 
+    border-radius: 10px;
+}
+
+.hero-text {
+    width: 100%;
+    padding: 15px 10px; 
+    text-align: center;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 1.9rem; 
+    line-height: 1.1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.hero-text p {
+    font-size: 1rem; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.hero-badge {
+    margin-top: 5px; 
+    font-size: 0.7rem;
+}
+
+.hero-carrossel {
+    width: 100%;
+    height: 290px; 
+    border-top: 2px solid #f39c12; 
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.legenda {
+    font-size: 0.65rem;
+    bottom: 8px;
+    left: 8px;
+}
+
+/* ======================================================
+   3. SESSÃO DE CHAMADA URGENTE
+   ====================================================== */
+.faixa-dourada-separadora { 
+    display: block; 
+    width: 100%; 
+    height: 6px; 
+    background: linear-gradient(to right, #f39c12, #e67e22, #f39c12); 
+} 
+
+.chamada-urgente {
+    margin-top: -65px; 
+    padding: 20px 10px; 
+    position: relative;
+    z-index: 5;
+}
+
+.bloco-problemas {
+    grid-template-columns: 1fr; 
+    gap: 15px; 
+    margin-bottom: 20px; 
+}
+
+.item-problema {
+    font-size: 1.5rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: none; /* Aguarda a classe animar adicionada pelo JS. */
+}
+
+.chamada-urgente.animar .item-problema {
+    animation: entradaLista 0.8s ease-out forwards;
+}
+
+.chamada-urgente.animar .p1 { animation-delay: 0.2s; }
+.chamada-urgente.animar .p2 { animation-delay: 0.5s; }
+.chamada-urgente.animar .p3 { animation-delay: 0.8s; }
+.chamada-urgente.animar .p4 { animation-delay: 1.1s; }
+.chamada-urgente.animar .p5 { animation-delay: 1.4s; }
+.chamada-urgente.animar .p6 { animation-delay: 1.7s; }
+
+.solucao {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    padding: 0 10px;
+    display: block;
+    width: 100%;
+    opacity: 0;
+    animation: none;
+}
+
+.chamada-urgente.animar .solucao {
+    animation: entradaMestre 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.2s forwards, 
+               respiroVida 4s ease-in-out 3.5s infinite !important;
+}
+
+/* ======================================================
+   4. SEÇÃO DE SERVIÇOS
+   ====================================================== */
+.secao-servicos-limpa {
+    padding: 65px 15px; /* AUMENTA/DIMINUI o respiro interno da seção inteira (65px em cima/baixo, 15px nas laterais) */
+    margin-top: -30px;  /* SOBE/DESCE a seção inteira (o valor negativo puxa ela para cima, colando na sessão de cima) */
+    width: 100%;        /* Define que ocupa 100% da largura da tela. Não precisa mexer. */
+    display: block;
+}
+
+.grade-servicos-limpa {
+    display: flex; 
+    flex-direction: column; 
+    gap: 35px;          /* AUMENTA/DIMINUI a distância (o buraco) entre um serviço e o outro de baixo */
+}
+
+.item-servico {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Alinha o ícone e o texto sempre pelo topo */
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.icone-solto {
+    width: 90px !important;        /* AUMENTA/DIMINUI a LARGURA do ícone */
+    height: 80px !important;        /* ⚠️ AQUI ESTÁ O ERRO! AUMENTA/DIMINUI a ALTURA do ícone. Mude para 80px ou "auto" para ele voltar ao normal! */
+    margin-right: 0px !important;  /* AUMENTA/DIMINUI a distância entre o ícone e o texto (se quiser afastar o texto, coloque uns 15px aqui) */
+    margin-left: 0;
+    margin-bottom: 0;
+    flex-shrink: 0;     /* Impede que o texto amasse o ícone. Não mexer. */
+}
+
+.texto-servico {
+    flex: 1; 
+    display: block; 
+    padding-right: 10px; /* AUMENTA/DIMINUI a barreira invisível na direita (impede o texto de colar na borda da tela do celular) */
+    box-sizing: border-box;
+}
+
+.texto-servico h3 {
+    font-size: 1.2rem;  /* AUMENTA/DIMINUI o tamanho da letra do título (Ex: Hidráulica e Esgoto) */
+    color: #162e48;     /* Muda a cor do título */
+    margin: 0 0 5px 0;  /* O "5px" aqui AUMENTA/DIMINUI a distância entre o título e o parágrafo debaixo dele */
+    line-height: 1.2;   /* AUMENTA/DIMINUI a distância entre as linhas caso o título tenha duas linhas */
+    font-weight: 800;   /* AUMENTA/DIMINUI a "gordura" da letra (negrito) */
+    text-align: left;
+}
+
+.texto-servico p {
+    font-size: 1rem;    /* AUMENTA/DIMINUI o tamanho da letra da descrição do serviço */
+    line-height: 1.4;   /* AUMENTA/DIMINUI o espaço entre as linhas do texto (para não ficar tudo embolado) */
+    color: #555;        /* Muda a cor do texto da descrição */
+    margin: 0;
+    text-align: left;
+    width: 100%;
+    display: block;
+}
+
+/* ======================================================
+   5. PAINEL DE ATENDIMENTO
+   ====================================================== */
+.container-atendimento-unico {
+    flex-direction: column;
+    margin: 0px 2px;
+    min-height: auto;
+}
+
+.imagem-ferramentas {
+    width: 100%; 
+    height: 180px; 
+    padding: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.imagem-ferramentas img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; 
+}
+
+.overlay-texto-imagem {
+    position: relative;
+    z-index: 10; 
+    text-align: center;
+}
+
+.overlay-texto-imagem h3 {
+    background: rgba(0, 0, 0, 0.4); 
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    border-left: 3px solid #f39c12;
+    display: table; 
+    margin: 120px auto 0 auto;
+}
+
+.lista-condominios-laranja {
+    width: 100%;
+    padding: 25px 20px 20px 20px; 
+    position: relative;
+}
+
+.lista-condominios-laranja h2 {
+    font-size: 1.5rem; 
+    text-align: center; 
+    margin-bottom: 15px;
+}
+
+.linha-detalhe {
+    margin: 0 auto 25px auto; 
+}
+
+.grupo-local {
+    text-align: center; 
+    margin-bottom: 20px; 
+}
+
+.grupo-local:last-child {
+    text-align: left;   
+    max-width: 55%;     
+    margin-bottom: 0;    
+}
+
+.link-google-verificado {
+    width: 155px; 
+    position: absolute;
+    bottom: 15px; 
+    right: 10px;
+    z-index: 20;
+    padding: 6px; 
+}
+
+.grupo-local h3 { font-size: 1rem; }
+.grupo-local p { font-size: 0.90rem; }
+
+/* ======================================================
+   6. SEÇÃO VÍDEO + FAQ
+   ====================================================== */
+.faq-video-section {
+    padding: 30px 15px;
+}
+
+.faq-video-container {
+    flex-direction: column; 
+    gap: 30px; 
+}
+
+.faq-box {
+    width: 100%;
+}
+
+.faq-box h2, .video-box-clean h2 {
+    font-size: 1.5rem; 
+    text-align: center;
+}
+
+/* --- AJUSTE DAS LINHAS DOURADAS (CELULAR EM PÉ) --- */
+
+    /* 1. LINHA DO FAQ */
+    .faq-box .divisor-dourado-video {
+        display: block !important;
+        width: 60px;           /* Largura da linha */
+        height: 2px;           /* Garante a espessura da linha */
+        margin-bottom: 15px;
+        
+        /* MÁGICA PARA CENTRALIZAR NO CELULAR EM PÉ */
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* 2. LINHA DO VÍDEO */
+    .video-box-clean .divisor-dourado-video {
+        display: block !important;
+        width: 60px;           /* Largura da linha */
+        height: 2px;           /* Garante a espessura da linha */
+        margin-bottom: 15px;
+
+        /* MÁGICA PARA CENTRALIZAR NO CELULAR EM PÉ */
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+.faq-pergunta {
+    font-size: 0.95rem; 
+    padding: 15px;
+}
+
+.video-box-clean {
+    width: 100%;
+    order: 2; 
+}
+
+.iframe-container-clean {
+    width: 100%;
+    height: 0; 
+    min-height: 0;
+    padding-top: 56.25%; 
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: transparent; 
+}
+
+.iframe-container-clean video, 
+.iframe-container-clean iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.faq-resposta p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.btn-whats-video-land {
+    display: none; /* Escondido por padrão, aparece só no landscape */
+}
+
+/* ======================================================
+   7. GALERIA DE FOTOS
+   ====================================================== */
+.overlay-mestre {
+    padding: 80px 15px 30px; 
+    background-color: rgba(10, 25, 41, 0.95); 
+}
+
+.grade-fotos-overlay {
+    display: flex; 
+    flex-direction: column;
+    gap: 20px;
+    transform: none; 
+    width: 100%;
+}
+
+.grade-fotos-overlay img {
+    width: 100%;
+    height: auto; 
+    min-height: 250px;
+    border-radius: 10px;
+    transform: translateY(30px); 
+    opacity: 0;
+}
+
+.botao-fechar-overlay {
+    position: fixed;
+    top: 20px; 
+    right: 50%;
+    transform: translateX(50%); 
+    width: 80%;
+    text-align: center;
+    font-size: 14px;
+    padding: 15px;
+    background-color: #f39c12; 
+    opacity: 0;
+    z-index: 1000001;
+}
+
+@keyframes entrarMobile {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.overlay-mestre.ativa .grade-fotos-overlay img {
+    animation: entrarMobile 0.6s ease-out forwards;
+}
+
+/* ======================================================
+   8. RODAPÉ E BOTÃO FLUTUANTE
+   ====================================================== */
+.fat-footer {
+    padding: 30px 20px;
+}
+
+.footer-container-principal {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.logo-footer-texto, 
+.cnpj-destaque {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.cnpj-destaque {
+    margin-bottom: 20px;
+}
+
+.contato-horario, 
+.pagamento-footer, 
+.bloco-servicos-seo, 
+.footer-final {
+    text-align: left;
+}
+
+.contato-horario p { 
+    color: #ffffff; 
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: nowrap;  
+    align-items: center; 
+    justify-content: flex-start; 
+    gap: 5px;            
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.contato-horario p a {
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap; 
+}
+
+.contato-horario p svg {
+    flex-shrink: 0; 
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+.contato-horario h3, 
+.pagamento-footer h3 {
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+.grade-interna-servicos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.col-servico {
+    text-align: left;
+    border-left: 2px solid #f39c12; 
+    padding-left: 12px;
+}
+
+.col-servico h3 {
+    font-size: 13px;
+    color: #f39c12;
+    margin-bottom: 5px;
+}
+
+.col-servico p {
+    text-align: left;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.footer-final p {
+    text-align: left;
+}
+
+.whatsapp-fixo {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 0px;
+    width: 90%;
+    max-width: 320px;
+    justify-content: center;
+    display: flex; 
+    position: fixed;
+}
+
+/* ======================================================
+   9. SOBREPOSIÇÃO PARA CELULAR DEITADO (LANDSCAPE)
+   Como o arquivo já é lido no celular, essa media query 
+   apenas ajusta o que muda quando o aparelho é deitado.
+   ====================================================== */
+@media (orientation: landscape) {
+
+    /* --- 9. CABEÇALHO (LANDSCAPE) --- */
+    header {
+        position: relative;
+        top: auto;
+        height: 100px; 
+        padding: 0 20px;
+        box-shadow: none; 
+    }
+
+    .logo-img {
+        width: 85px;
+        height: auto;
+    }
+
+    .botao-header-whats {
+        font-size: 15px;
+        padding: 13px 12px;
+        white-space: nowrap;
+        width: auto;
+    }
+    
+    .botao-header-whats::after {
+        display: none; /* Esconde o número extra gerado no retrato */
+    }
+
+    
+    
+    
+    /* --- 10. HERO / BANNER PRINCIPAL (LANDSCAPE) --- */
+    .hero-container {
+        display: flex;
+        flex-direction: row; 
+        height: 85vh; 
+        min-height: 320px;
+        margin: 10px auto;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
+    .hero-text {
+        width: 40%; 
+        background-color: #f39c12; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        padding: 20px 25px;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .hero-badge {
+        font-size: 10px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: #e5eaf0;
+        display: inline-block;
+    }
+
+    .hero-text h1 {
+        font-size: 1.63rem; 
+        font-weight: 900; 
+        line-height: 1.5; 
+        color: #f8fbff;
+        margin-bottom: 10px;
+        text-transform: uppercase; 
+    }
+
+    .hero-text p {
+        font-size: 0.93rem;
+        line-height: 1.7;
+        font-weight: 500; 
+        color: #000000;
+        margin-bottom: 15px;
+    }
+
+    .hero-text .hero-badge:last-of-type {
+        display: block;
+        margin-top: 10px; 
+        font-size: 11px;
+        font-weight: 800;
+        color: #162e48;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: none; 
+        background: none; 
+    }
+
+    .hero-carrossel {
+        width: 60%; 
+        height: 100%;
+        border-top: none;
+    }
+
+    
+    
+    /* --- 11. SESSÃO DE CHAMADA URGENTE (LANDSCAPE) --- */
+    .chamada-urgente {
+        padding: 20px 15px; 
+        margin-top: 0; /* Reseta o valor negativo do retrato */
+    }
+
+    .bloco-problemas {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px 15px;
+        margin-bottom: 15px;
+    }
+
+    .bloco-problemas p.item-problema {
+        font-size: 1.1rem; 
+        line-height: 1.6;
+        margin-bottom: 2px; 
+        display: block;
+    }
+
+    .solucao {
+        font-size: 1.6rem;
+        line-height: 1.1;
+        margin-top: 10px;
+    }
+
+    .faixa-dourada-separadora {
+        height: 3px; 
+    }
+
+    /* --- 12. SEÇÃO DE SERVIÇOS (LANDSCAPE / CELULAR DEITADO) --- */
+    .secao-servicos-limpa {
+        padding-top: 20px;     /* AUMENTA/DIMINUI o espaço vazio no topo da seção inteira */
+        padding-bottom: 40px;  /* AUMENTA/DIMINUI o espaço vazio no final da seção inteira */
+        margin-top: 0;         /* Zera a margem para evitar que a seção suba demais no modo deitado */
+    }
+
+    .divisor-sessao {
+        margin: 20px 0 15px 0; /* AUMENTA/DIMINUI o espaço em volta do Título (20px em cima, 15px embaixo) */
+    }
+
+    .divisor-sessao h2 {
+        font-size: 1.5rem;     /* AUMENTA/DIMINUI o tamanho da letra do título principal "Nossos Serviços" */
+        margin-bottom: 8px;    /* AUMENTA/DIMINUI o espaço entre o título e a linhazinha laranja debaixo dele */
+    }
+
+    .linha-tema {
+        width: 60px;           /* AUMENTA/DIMINUI o comprimento (largura) da linhazinha laranja central */
+    }
+
+    /* ==============================================================
+       AQUI ESTÁ O COMANDO DAS DUAS COLUNAS PARA O CELULAR DEITADO
+       ============================================================== */
+    /* ==============================================================
+       AQUI ESTÁ A CORREÇÃO DE FORÇA PARA AS DUAS COLUNAS
+       Adicionamos o !important para ele vencer a regra do PC
+       ============================================================== */
+    .grade-servicos-limpa {
+        display: grid !important;         /* FORÇA o modo grade contra o flex do PC */
+        grid-template-columns: repeat(2, 1fr) !important; /* FORÇA a divisão em 2 colunas */
+        gap: 20px 30px !important;
+        margin-top: 25px;
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .item-servico {
+        display: flex !important; /* Garante que o item interno não herde formatações estranhas */
+        width: 100% !important;   /* Força o item a ocupar todo o espaço da sua própria coluna */
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .icone-solto {
+        width: 65px !important;           /* AUMENTA/DIMINUI a LARGURA do ícone quando o celular está deitado */
+        height: 65px !important;          /* AUMENTA/DIMINUI a ALTURA do ícone quando o celular está deitado */
+    }
+
+    .texto-servico h3 {
+        font-size: 1rem;       /* AUMENTA/DIMINUI o tamanho da letra do nome do serviço (ex: Hidráulica) */
+        margin-bottom: 4px;    /* AUMENTA/DIMINUI a distância do nome do serviço para o texto debaixo dele */
+    }
+
+    .texto-servico p {
+        font-size: 0.8rem;     /* AUMENTA/DIMINUI o tamanho da letra do texto de descrição do serviço */
+        line-height: 1.3;      /* AUMENTA/DIMINUI o espaço/respiro entre as linhas do texto da descrição */
+    }
+
+    
+    
+    
+    
+    
+    /* --- 13. PAINEL DE ATENDIMENTO (LANDSCAPE / CELULAR DEITADO) --- */
+   
+    .container-atendimento-unico {
+        display: flex;
+        flex-direction: row;   /* Coloca a foto na esquerda e a área laranja na direita (lado a lado) */
+        height: auto;          /* Deixa a altura se adaptar sozinha ao conteúdo */
+        min-height: 320px;     /* AUMENTA/DIMINUI a altura mínima garantida dessa faixa inteira */
+        width: 100%;           /* Ocupa a tela toda. Não mexer. */
+        border-radius: 0;      /* Remove cantos arredondados (tela cheia) */
+    }
+
+    /* --- PARTE 1: A FOTO DAS FERRAMENTAS (ESQUERDA) --- */
+    .imagem-ferramentas {
+        width: 35%;            /* AUMENTA/DIMINUI a largura da foto (Lembre-se: Foto + Laranja = 100%) */
+        padding: 0;
+        position: relative;
+        display: flex;
+        align-items: center;   /* Centraliza a caixinha preta na vertical */
+        justify-content: center; /* Centraliza a caixinha preta na horizontal */
+        height: auto;          
+    }
+
+    .overlay-texto-imagem {
+        display: flex;
+        position: absolute;
+        width: 100%;
+        justify-content: center; /* Move a caixinha preta para o centro da foto */
+        padding-top: 0px; 
+    }
+
+    .overlay-texto-imagem h3 {
+        background: rgba(0, 0, 0, 0.4); /* ESCURECE/CLAREIA o fundo da caixinha (0.6 é 60% de transparência) */
+        padding: 12px 12px;    /* AUMENTA/DIMINUI o "gordura" da caixinha ao redor do texto */
+        margin: 0; 
+        font-size: 0.93rem;    /* AUMENTA/DIMINUI o tamanho da letra "FERRAMENTAS PROFISSIONAIS" */
+    }
+
+    /* --- PARTE 2: A ÁREA LARANJA (DIREITA) --- */
+    .lista-condominios-laranja {
+        width: 65%;            /* AUMENTA/DIMINUI a largura da área laranja (Se foto = 35%, aqui = 65%) */
+        padding: 15px 20px;    /* AUMENTA/DIMINUI o respiro (distância) dos textos até a borda laranja */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        position: relative;
+    }
+
+    .lista-condominios-laranja h2 {
+        font-size: 0.80rem;       /* AUMENTA/DIMINUI o tamanho do título principal "Áreas de Atendimento" */
+        margin-bottom: 10px;   /* AUMENTA/DIMINUI o espaço entre o título e os bairros embaixo dele */
+        text-align: center;    /* Centraliza o título "Áreas de Atendimento" */
+    }
+
+    /* O Esqueleto dos Bairros (A Grade) */
+    .colunas-condominios {
+        display: grid;
+        grid-template-columns: 1.2fr 1.2fr; /* LARGURA DAS COLUNAS: 1.2fr dá um espaço flexível. (Use 1fr 1fr se quiser colunas 100% iguais) */
+        gap: 0px 20px;         /* AUMENTA/DIMINUI o buraco horizontal (20px) entre a coluna da esquerda e da direita */
+    }
+
+    /* ==============================================================
+       INVERSÃO DOS BAIRROS (Jardim Botânico na Esquerda, resto na Direita)
+       ============================================================== */
+
+    /* Bloco 1: Jardim Botânico (Agora na ESQUERDA e ocupa 2 andares) */
+    .grupo-local:first-child {
+        grid-column: 1;        /* Joga o bloco pro lado ESQUERDO */
+        grid-row: span 2;      /* Faz ele esticar para baixo, ocupando o espaço de 2 linhas */
+        border-right: 1px solid rgba(22, 46, 72, 0.15); /* A linhazinha fina divisória agora fica na DIREITA */
+        border-left: none;     /* Remove a linha antiga da esquerda */
+        padding-right: 15px;   /* AUMENTA/DIMINUI a distância do texto para a linhazinha divisória */
+        padding-left: 0;       /* Zera o respiro da esquerda */
+        padding-bottom: 0px; /* Mantém o espaço em branco no final para não bater no selo do Google */
+        margin-top: 0px;      /* DESCE/SOBE todo o bloco do Jardim Botânico */
+    }
+
+    /* Bloco 2: Saída Norte e Lagos (Agora na DIREITA, no Topo) */
+    .grupo-local:nth-child(2) {
+        grid-column: 2;        /* Joga o bloco pro lado DIREITO */
+        margin-top: 0px;    /* ⚠️ IMPORTANTE: SOBE o bloco com força! Como você testou -200px, mantive esse valor. */
+    }
+
+    /* Bloco 3: Plano Piloto (Agora na DIREITA, Embaixo) */
+    .grupo-local:nth-child(3) {
+        grid-column: 2;                /* Joga o bloco pro lado DIREITO */
+        margin-top: -20px ;               /* ⚠️ O valor que você deixou aí no seu teste */
+        
+        /* ==========================================================
+           A MÁGICA PARA MATAR A REGRA DO CELULAR EM PÉ AQUI:
+           ========================================================== */
+        text-align: center !important; /* Força o texto a voltar para o centro */
+        max-width: 100% !important;    /* Tira o esmagamento de 55% e deixa o texto esticar */
+    }
+    
+    
+    /* --- PARTE 3: O SELO DO GOOGLE --- */
+   
+    .link-google-verificado {
+        width: 140px;          /* AUMENTA/DIMINUI o tamanho do selo "Google Verificado" */
+        position: absolute;    /* Permite colar ele em qualquer canto */
+        bottom: 13px;          /* SOBE/DESCE o selo em relação ao chão (fundo da área laranja) */
+        right: 500px;           /* EMPURRA o selo para a esquerda ou direita em relação à parede direita */
+    }
+    
+    
+    
+    
+    
+    /* --- 14. SEÇÃO VÍDEO + FAQ (LANDSCAPE / CELULAR DEITADO) --- */
+
+    /* 🎯 REMOVE OS BOTÕES FLUTUANTES NO MODO DEITADO PARA LIMPAR A TELA */
+    .whatsapp-flutuante, .whatsapp-fixo, .btn-whatsapp-fixo { 
+        display: none !important; /* APAGA os botões que ficam "perseguindo" a tela para não tampar o conteúdo */
+    }
+
+    .faq-video-section {
+        padding: 20px 15px; /* AUMENTA/DIMINUI o respiro (espaço vazio) no topo e no fundo desta seção inteira */
+    }
+
+    .faq-video-container {
+        gap: 20px;           /* AUMENTA/DIMINUI a distância entre a caixa do FAQ e a caixa do Vídeo */
+        flex-direction: row; /* Coloca o FAQ e o Vídeo lado a lado. Se mudar para 'column', um fica embaixo do outro. */
+        align-items: flex-start; /* Alinha os dois blocos pelo topo. Não mexer. */
+    }
+
+    .faq-box h2, .video-box-clean h2 {
+        font-size: 1.3rem;   /* AUMENTA/DIMINUI o tamanho da letra dos títulos (Dúvidas / Veja em Ação) */
+        margin-bottom: 5px;  /* AUMENTA/DIMINUI o espaço entre o título e a linhazinha dourada */
+    }
+
+  /* --- AJUSTE INDIVIDUAL DAS LINHAS DOURADAS (CENTRALIZADAS) --- */
+
+    /* 1. LINHA DO FAQ */
+    .faq-box .divisor-dourado-video {
+        margin-bottom: 15px; 
+        width: 60px;
+        display: block !important;  /* Transforma em bloco para a margem auto funcionar */
+        margin-left: auto !important;  /* Empurra da esquerda para o centro */
+        margin-right: auto !important; /* Empurra da direita para o centro */
+    }
+
+    /* 2. LINHA DO VÍDEO */
+    .video-box-clean .divisor-dourado-video {
+        margin-bottom: 15px;
+        width: 60px;
+        display: block !important;  /* Transforma em bloco para a margem auto funcionar */
+        margin-left: auto !important;  /* Empurra da esquerda para o centro */
+        margin-right: auto !important; /* Empurra da direita para o centro */
+    }
+
+    .faq-pergunta {
+        padding: 12px 15px;  /* AUMENTA/DIMINUI o tamanho das barras de perguntas do FAQ (clicáveis) */
+        font-size: 0.85rem;  /* AUMENTA/DIMINUI o tamanho da letra da pergunta */
+    }
+
+    .faq-item {
+        margin-bottom: 6px;  /* AUMENTA/DIMINUI o espaço entre uma pergunta e a outra de baixo */
+    }
+
+    .faq-resposta p {
+        font-size: 0.8rem;   /* AUMENTA/DIMINUI o tamanho da letra da resposta que aparece ao clicar */
+        padding: 0 15px 10px 15px; /* AUMENTA/DIMINUI o respiro interno do texto da resposta */
+    }
+
+    .video-box-clean {
+        flex: 1;             /* Define que o vídeo ocupa metade do espaço. Não mexer. */
+        display: flex;
+        flex-direction: column; /* Faz o vídeo e o botão do Whats ficarem um em cima do outro */
+        align-items: center;    /* CENTRALIZA o vídeo e o botão dentro dessa coluna */
+    }
+
+    .iframe-container-clean {
+        width: 100%;         /* Faz o vídeo ocupar toda a largura da coluna dele */
+        min-height: 200px;   /* AUMENTA/DIMINUI a altura do quadro do vídeo no modo deitado */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* MUDA a sombra em volta do vídeo */
+        position: relative;
+    }
+
+    /* ESTE É O BOTÃO QUE FICA: Preso no layout abaixo do vídeo */
+    .btn-whats-video-land {
+        display: flex !important; 
+        background-color: #0e662e; 
+        color: #fff;
+        padding: 12px 25px;
+        margin-top: 15px;
+        border-radius: 50px;
+        font-weight: 800;
+        text-decoration: none;
+        font-size: 18px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-transform: uppercase;
+        width: fit-content; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    
+
+    /* --- 15. GALERIA DE FOTOS (LANDSCAPE / CELULAR DEITADO) --- */
+    .overlay-mestre {
+        background-color: rgba(10, 25, 41, 0.98); /* MUDA a cor e a transparência do fundo quando a galeria abre */
+        padding: 10px; /* AUMENTA/DIMINUI o respiro geral em volta da galeria aberta */
+    }
+
+    .grade-fotos-overlay {
+        display: grid; /* Ativa o modo grade. Não mexer. */
+        grid-template-columns: repeat(2, 1fr); /* DEFINE as 2 colunas de fotos lado a lado no modo deitado */
+        gap: 15px; /* AUMENTA/DIMINUI o espaço (buraco) entre uma foto e outra */
+        padding: 70px 20px 30px 20px; /* AUMENTA/DIMINUI os espaços (70px topo para não cobrir o botão, 20px laterais, 30px fundo) */
+        max-width: 800px; /* AUMENTA/DIMINUI a largura máxima que a galeria pode ter na tela */
+        margin: 0 auto; /* Centraliza a grade de fotos na tela. Não mexer. */
+    }
+
+    .grade-fotos-overlay img {
+        width: 100%; /* Faz a foto ocupar toda a largura da coluna dela. */
+        height: 220px; /* AUMENTA/DIMINUI a altura das fotos (se ficarem muito grandes no deitado, diminua para 180px) */
+        min-height: auto; /* Reseta alturas mínimas anteriores. Não mexer. */
+        object-fit: cover; /* Corta a foto inteligentemente para preencher o quadrado sem amassar a imagem. */
+        border-radius: 10px; /* AUMENTA/DIMINUI o arredondamento dos cantos das fotos */
+        border: 2px solid rgba(255, 255, 255, 0.1); /* MUDA a cor e a grossura da bordinha em volta de cada foto */
+    }
+
+    /* BOTÃO FECHAR - O "X" DA GALERIA (VERSÃO CELULAR DEITADO) */
+    .botao-fechar-overlay {
+        position: fixed; 
+        top: 15px; 
+        right: 20px; 
+        background: #f39c12; 
+        color: #162e48; 
+
+        /* --- O AJUSTE DE LARGURA ESTÁ AQUI --- */
+        width: auto !important;    /* 🎯 FORÇA o botão a ter apenas a largura do texto */
+        padding: 8px 15px !important; /* Aumenta/Diminui o respiro interno (8px cima/baixo, 15px lados) */
+        
+        font-size: 0.9rem; 
+        font-weight: 900; 
+        border-radius: 50px; 
+        transform: none; 
+        z-index: 1000002;          /* Garante que ele fique acima de todas as fotos */
+    }

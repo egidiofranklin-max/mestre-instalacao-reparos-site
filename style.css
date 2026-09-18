@@ -1,0 +1,874 @@
+/* ======================================================
+   1. RESET E CONFIGURAÇÕES GERAIS
+   ====================================================== */
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', Arial, sans-serif; }
+body { background-color: #f5f5f5; color: #333; line-height: 1.6; }
+
+/* ======================================================
+   2. CABEÇALHO (HEADER)
+   ====================================================== */
+header {
+    background-color: #162e48;
+    height: 110px; width: 100%;
+    display: flex; justify-content: center; align-items: center;
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15); padding: 0 20px;
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilo do Botão de Orçamento (WhatsApp) */
+.botao-header-whats {
+    background-color: #f39c12;
+    color: #162e48 !important;
+    text-shadow: 2px 2px 4px #25D366 (0, 0, 0);
+    padding: 14px 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    
+}
+
+.botao-header-whats:hover {
+    background-color: #128c7e;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Ajuste da Logo para não esticar */
+.logo-img {
+    max-height: 100px;
+    width: auto;
+}
+.header-container { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; }
+.logo-img { height: 95px; width: auto; display: block; image-rendering: -webkit-optimize-contrast; }
+nav a { text-decoration: none; color: #ffffff; margin-left: 25px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+nav a:hover { color: #f39c12; }
+
+/* ======================================================
+   3. BANNER PRINCIPAL (HERO)
+   ====================================================== */
+.hero-container { max-width: 1100px; margin: 50px auto; display: flex; height: 480px; border-radius: 10px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.1); background: white; }
+
+.hero-text { 
+    width: 40%; 
+    background-color: #f39c12; 
+    color: white; 
+    padding: 30px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+/* 1. TEXTO GRANDE */
+.hero-text h1 { 
+    font-size: 2.8rem; 
+    line-height: 1.5; 
+    margin-bottom: 3px; 
+    font-weight: 750; 
+    /* AJUSTE: Sombra preta com 50% de transparência. Fica elegante e dá contraste sem pesar. */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: 20px; 
+}
+
+/* 2. TEXTO DO MEIO */
+.hero-text p { 
+    font-size: 1.3rem; 
+    margin-bottom: 25px; 
+    /* AJUSTE: Um chumbo bem escuro (#1a1a1a) descansa mais a vista que o preto puro */
+    color: #1a1a1a;
+    line-height: 1.5; /* Adicionado para dar um respiro entre as linhas */
+    /* AJUSTE PRINCIPAL: Sombra branca removida. É isso que estava borrando o texto! */
+    text-shadow: none; 
+    margin-top: 20px; 
+}
+
+/* 3. TEXTO PEQUENININHO */
+.hero-badge { 
+    padding: 0; 
+    background: none; 
+    font-weight: bold; 
+    font-size: 0.9rem; 
+    text-align: center; 
+    display: block; 
+    width: 100%; 
+    margin-top: +50px; 
+    letter-spacing: 1.5px; 
+    text-transform: uppercase; 
+    color: #1a1a1a;
+    /* AJUSTE: Sombra removida para garantir foco e nitidez total */
+    text-shadow: none; 
+}
+
+.hero-carrossel { width: 60%; position: relative; overflow: hidden; background: #222; }
+
+
+/* ANIMAÇÃO DO CARROSSEL */
+.slides-container { display: flex; width: 600%; height: 100%; animation: carrossel-animado 24s infinite; }
+.slide { width: 100%; height: 100%; position: relative;}
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+.legenda { position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); color: white; padding: 5px 15px; border-radius: 5px; font-size: 0.8rem; }
+@keyframes carrossel-animado {
+    0%, 15% { transform: translateX(0); }
+    16.6%, 31.6% { transform: translateX(-16.66%); }
+    33.3%, 48.3% { transform: translateX(-33.33%); }
+    50%, 65% { transform: translateX(-50%); }
+    66.6%, 81.6% { transform: translateX(-66.66%); }
+    83.3%, 98.3% { transform: translateX(-83.33%); }
+}
+
+/* ======================================================
+   4. SESSÃO DE CHAMADA URGENTE
+   ====================================================== */
+.chamada-urgente { background: radial-gradient(circle, rgba(243, 156, 18, 0.08) 0%, #ffffff 80%); padding: 40px 20px; text-align: center; width: 100%; }
+.container-impacto { max-width: 1100px; margin: 0 auto; }
+.bloco-problemas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px 20px; margin-bottom: 20px; }
+.item-problema { font-family: 'Verdana', Geneva, sans-serif; font-size: 1.25rem; color: #162e48; font-weight: 600; font-style: italic; opacity: 0; transform: translateY(10px); animation: entradaLista 0.8s ease-out forwards; }
+.p1 { animation-delay: 0.5s; } .p2 { animation-delay: 1.0s; } .p3 { animation-delay: 1.5s; } .p4 { animation-delay: 2.0s; } .p5 { animation-delay: 2.5s; } .p6 { animation-delay: 3.0s; }
+.solucao { grid-column: 1 / -1; font-family: 'Arial Black', sans-serif; font-size: 3rem; color: #333; text-transform: uppercase; opacity: 0; animation: entradaMestre 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 4s forwards, respiroVida 4s ease-in-out 6s infinite; }
+.solucao span { color: #f39c12; }
+@keyframes entradaLista { to { opacity: 0.8; transform: translateY(0); } }
+@keyframes entradaMestre { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes respiroVida { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); text-shadow: 0 0 15px rgba(243, 156, 18, 0.2); } }
+
+/* FAIXA DOURADA SEPARADORA - VOLTANDO AO NORMAL NO PC */
+.faixa-dourada-separadora { 
+    display: block !important; 
+    width: 100%; 
+    height: 4px; 
+    background: linear-gradient(to right, #f39c12, #e67e22, #f39c12); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+    position: relative; 
+    z-index: 10 !important; 
+    margin-top: 0px; 
+    margin-bottom: 0px; 
+}
+
+/* ======================================================
+   5. SEÇÃO DE SERVIÇOS - MASTER (PC + MOBILE)
+   ====================================================== */
+
+/* --- ESTILO GERAL (Título e Barrinha) --- */
+.secao-servicos-limpa {
+    padding: 40px 20px 80px;
+    background-color: #f5f5f5; 
+    width: 100%;
+}
+
+.divisor-sessao {
+    text-align: center;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divisor-sessao h2 {
+    color: #162e48 !important;
+    font-size: 1.8rem !important;
+    font-weight: 700 !important; /* Peso ajustado: nem gordo, nem magro */
+    text-transform: uppercase !important;
+    margin-bottom: 10px !important;
+}
+
+/* Ajuste da Linha Laranja (Conforme seu HTML) */
+.linha-tema {
+    width: 60px !important;
+    height: 4px !important;
+    background-color: #f39c12 !important;
+    border-radius: 50px !important;
+    margin: 0 auto !important;
+}
+
+/* --- REGRAS PARA COMPUTADOR E TABLET (Desktop First) --- */
+.grade-servicos-limpa { 
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 40px 30px !important; 
+    max-width: 1200px; 
+    margin: 50px auto 0; 
+}
+
+.item-servico { 
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 20px; 
+    text-align: left;
+    /* Aqui está o segredo: ele tenta 3 colunas, mas aceita diminuir */
+    flex: 1 1 calc(33.333% - 40px) !important;
+    min-width: 300px !important; /* Evita que o texto fique esmagado no PC */
+}
+
+.icone-solto { 
+    width: 60px ; 
+    height: 60px ;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.texto-servico h3 { 
+    color: #162e48; 
+    margin: 0 0 6px 0; 
+    font-weight: bold; 
+    font-size: 1.15rem;
+}
+
+.texto-servico p { 
+    color: #555; 
+    font-size: 0.95rem;
+    line-height: 1.4; 
+    margin: 0;
+}
+
+/* --- AJUSTE FINAL: CELULAR EM PÉ (ABAIXO DE 480PX) --- */
+@media (max-width: 480px) {
+    .divisor-sessao h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .grade-servicos-limpa {
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+
+    .item-servico {
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+        padding-right: 15px !important; /* Evita vazar na direita */
+    }
+
+    .icone-solto {
+        width: 45px !important;
+        height: 45px !important;
+        margin-right: 15px !important;
+    }
+
+    .texto-servico {
+        max-width: 85% !important; /* Garante o respiro que você gostou */
+    }
+}
+
+/* ======================================================
+   TÍTULO DA SEÇÃO E LINHA LARANJA (DIVISOR)
+   ====================================================== */
+.divisor-sessao {
+    text-align: center;
+    margin-bottom: 50px !important; /* Espaço entre o título e a grade de serviços */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Garante centralização em qualquer navegador */
+}
+
+.divisor-sessao h2 {
+    font-size: 2.2rem; /* No PC será esse tamanho */
+    color: #162e48;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 12px !important;
+    letter-spacing: 1px;
+}
+
+/* A BARRINHA LARANJA */
+.linha-tema {
+    width: 70px !important;    /* Largura da barrinha */
+    height: 4px !important;    /* Espessura */
+    background-color: #f39c12 !important; /* Laranja do tema */
+    border-radius: 50px !important; /* Deixa as pontas arredondadas/suaves */
+    margin: 0 auto !important;
+}
+
+/* AJUSTE PARA CELULAR (SÓ PARA O TÍTULO NÃO FICAR GIGANTE) */
+@media (max-width: 480px) {
+    .divisor-sessao h2 {
+        font-size: 1.6rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .divisor-sessao {
+        margin-bottom: 30px !important;
+    }
+}
+
+
+/* ======================================================
+   6. PAINEL DE ATENDIMENTO (CHASSI INDUSTRIAL)
+   ====================================================== */
+
+.painel-atendimento-unico { 
+    width: 100%; 
+    padding: 30px 0; 
+    background-color: #b0b0b0; 
+    /* ✅ Corrigido: Removida a vírgula e fechado com ponto e vírgula */
+    background-image: 
+        radial-gradient(circle at 50% 10%, rgba(255,255,255,0.8) 0%, transparent 70%), 
+        linear-gradient(to right, rgba(0,0,0,0.1) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.1) 100%); 
+    
+    background-attachment: fixed !important; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center top; 
+}
+.container-atendimento-unico { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: flex; 
+    min-height: 380px; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    box-shadow: 0 15px 50px rgba(0,0,0,0.4); 
+}
+
+/* LADO ESQUERDO: Onde fica a foto das ferramentas */
+.imagem-ferramentas { 
+    width: 35%; 
+    position: relative; 
+    display: flex; 
+    align-items: flex-end; 
+    padding: 30px; 
+    overflow: hidden; 
+}
+
+.imagem-ferramentas img { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    z-index: 1; 
+}
+
+/* --- AJUSTE DEFINITIVO PARA TRAZER O TEXTO PARA A FRENTE E ADICIONAR A SOMBRA --- */
+
+/* 1. O CONTAINER: Garantimos que ele flutue acima da imagem */
+.imagem-ferramentas .overlay-texto-imagem {
+    position: relative; /* Indispensável para o z-index funcionar */
+    z-index: 10;        /* Maior que o z-index 1 da imagem (.imagem-ferramentas img) */
+    display: flex;      /* Alinha os textos */
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os 'quadradinhos' à esquerda */
+}
+
+/* 2. OS TEXTOS: Aplicamos o estilo do 'quadradinho' de sombra */
+.overlay-texto-imagem h3,
+.overlay-texto-imagem p {
+    color: #ffffff; /* Letra branca */
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.5); /* O quadradinho: preto com 70% de transparência */
+    padding: 6px 15px;           /* Espaço interno elegante */
+    display: table;              /* Abraça apenas as palavras, sem atravessar a imagem */
+    margin: 0;                   /* Reseta margens antigas */
+    margin-bottom: 6px;          /* Espaço entre as linhas de texto */
+    border-radius: 4px;          /* Pontas leves, estilo Slim */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra extra suave no próprio quadradinho */
+}
+
+/* 3. DETALHES ESPECÍFICOS DO TÍTULO (H3) */
+.overlay-texto-imagem h3 {
+    font-size: 1.15rem; /* Tamanho ajustado */
+    font-weight: 800;
+    border-left: 4px solid #f39c12; /* Bordinha laranja para dar o toque de mestre */
+}
+
+/* 4. DETALHES ESPECÍFICOS DO SUBTÍTULO (P) */
+.overlay-texto-imagem p {
+    font-size: 0.88rem; /* Tamanho ajustado */
+    font-weight: 400;
+    margin-left: 4px; /* Pequeno recuo para alinhar com o texto do h3 */
+}
+
+/* LADO DIREITO: A área laranja */
+.lista-condominios-laranja { 
+    width: 65%; 
+    background-color: #f39c12; 
+    padding: 40px; 
+    position: relative; 
+} 
+
+.lista-condominios-laranja h2 { 
+    font-size: 1.8rem; 
+    color: #162e48; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    margin-bottom: 10px; 
+}
+
+/* ======================================================
+    ESTILO DO SELO GOOGLE (O TOQUE DE MESTRE)
+   ====================================================== */
+.link-google-verificado {
+    position: absolute;
+    bottom: 25px; 
+    right: 30px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px; /* Ajustado para o modelo Slim que você pediu */
+    transition: all 0.4s ease;
+    overflow: hidden;
+    border-radius: 6px; /* Ajuste Radial/Pontas mais retas que você pediu */
+    z-index: 10;
+    
+    background: #ffffff; 
+    padding: 6px 12px; 
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25); 
+    border: 1px solid rgba(255,255,255,0.3);
+    text-decoration: none;
+}
+
+.svg-google-mestre {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.link-google-verificado::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 223, 0, 0.4), transparent);
+    transition: all 0.60s ease;
+}
+
+.link-google-verificado:hover {
+    transform: scale(1.08) translateY(-8px); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35); 
+}
+
+.link-google-verificado:hover::after {
+    left: 150%; 
+}
+/* ======================================================
+   7. SEÇÃO VÍDEO + FAQ (SIMETRIA E AJUSTES)
+   ====================================================== */
+
+.faq-video-section { 
+    background-color: #f8fafd; 
+    padding: 40px 20px; 
+    width: 100%; 
+}
+
+.faq-video-container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    display: flex; 
+    gap: 50px; 
+    align-items: stretch; /* Alinha o topo e o fundo das duas colunas */
+}
+
+/* Lado das Perguntas */
+.faq-box { 
+    flex: 1.2; /* Aumenta um pouco a largura das perguntas */
+}
+
+.faq-box h2, .video-box-clean h2 { 
+    color: #162e48; 
+    font-size: 1.8rem; 
+    margin-bottom: 10px; 
+    text-transform: uppercase; 
+    font-weight: 800; 
+}
+
+.faq-box .divisor-dourado-video, .video-box-clean .divisor-dourado-video { 
+    width: 50px; 
+    height: 3px; 
+    background: #f39c12; 
+    margin: 0 0 25px 0; 
+    border-radius: 2px; 
+}
+
+/* Botões das Perguntas */
+.faq-pergunta { 
+    width: 100%; 
+    background-color: transparent; 
+    color: #162e48; 
+    padding: 19px 20px; /* Deixa o botão mais fininho */
+    font-size: 1rem; 
+    font-weight: bold; 
+    text-align: left; 
+    border: none; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.faq-item { 
+    margin-bottom: 10px; 
+    background: white; 
+    border: 1px solid #e1e8ed; 
+    border-radius: 8px; 
+    overflow: hidden; 
+}
+
+/* Lado do Vídeo */
+.video-box-clean { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; /* Organiza título e vídeo em pé */
+}
+
+/* Container do Vídeo Ajustado */
+.iframe-container-clean { 
+    position: relative; 
+    width: 100%; 
+    flex: 1; /* Faz o vídeo esticar para bater com o final das perguntas */
+    border-radius: 15px; 
+    overflow: hidden; 
+    box-shadow: 0 15px 35px rgba(22, 46, 72, 0.15); 
+    background-color: #000; 
+    min-height: 300px; /* Garante tamanho mínimo */
+}
+
+/* Ajuste da tag de Vídeo ou Iframe */
+.iframe-container-clean video, 
+.iframe-container-clean iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover; /* Preenche o espaço sem distorcer o vídeo */
+}
+
+/* Ícone e Resposta */
+.faq-pergunta::after { content: '\002B'; color: #f39c12; }
+.faq-pergunta.ativa { color: #f39c12; }
+.faq-resposta { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-resposta p { padding: 0 20px 15px 20px; color: #555; font-size: 0.9rem; }
+
+/* ======================================================
+   8. PORTFÓLIO E GALERIA MESTRE
+   ====================================================== */
+.btn-mestre-galeria { background-color: #162e48; color: #e0813b; border: none; padding: 16px 35px; font-weight: bold; border-radius: 5px; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+.overlay-mestre { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; display: none; overflow-y: auto; padding: 100px 20px 50px; text-align: center; background-color: #fafcff00; }
+.overlay-mestre.ativa { display: block; animation: escurecerPalco 1.5s ease forwards; }
+.grade-fotos-overlay { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 1100px; margin: 20px auto; position: relative; transform: translateX(8px); }
+.grade-fotos-overlay img { width: 100%; height: 280px; object-fit: cover; border-radius: 12px; border: 1px solid #ffffff; opacity: 0; image-rendering: -webkit-optimize-contrast; }
+
+.grade-fotos-overlay img:nth-child(1), .grade-fotos-overlay img:nth-child(2), .grade-fotos-overlay img:nth-child(3), .grade-fotos-overlay img:nth-child(7), .grade-fotos-overlay img:nth-child(8), .grade-fotos-overlay img:nth-child(9) { transform: translateX(-100px); }
+.grade-fotos-overlay img:nth-child(4), .grade-fotos-overlay img:nth-child(5), .grade-fotos-overlay img:nth-child(6), .grade-fotos-overlay img:nth-child(10), .grade-fotos-overlay img:nth-child(11), .grade-fotos-overlay img:nth-child(12) { transform: translateX(100px); }
+.overlay-mestre.ativa .grade-fotos-overlay img { animation: entrarCruzado 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+.grade-fotos-overlay img:nth-child(1) { animation-delay: 0.10s; } .grade-fotos-overlay img:nth-child(2) { animation-delay: 0.20s; } .grade-fotos-overlay img:nth-child(3) { animation-delay: 0.30s; } /* e assim por diante */
+
+.botao-fechar-overlay { position: fixed; top: 120px; right: 220px; color: #fff; font-size: 13px; letter-spacing: 2px; cursor: pointer; z-index: 1000000; background-color: rgba(243, 156, 18, 0.7); padding: 10px 22px; border-radius: 30px; border: 1px solid #f39c12; text-transform: uppercase; opacity: 0; transition: 0.3s; }
+.botao-fechar-overlay:hover { background-color: rgba(243, 156, 18, 1); }
+.overlay-mestre.ativa .botao-fechar-overlay { animation: fadeInSuave 1s ease 2.8s forwards; }
+
+@keyframes escurecerPalco { to { background-color: rgba(10, 25, 41, 0.55); } }
+@keyframes entrarCruzado { to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInSuave { to { opacity: 1; } }
+
+/* ======================================================
+   BLOQUEIO DO BOTÃO (PC E PORTRAIT)
+   ====================================================== */
+.btn-whats-video-land {
+    display: none !important; /* Esconde no PC por padrão */
+}
+
+/* Garante que o bloco do vídeo não mude de comportamento no PC */
+.video-box-clean {
+    display: block !important; 
+}
+
+   /* ======================================================
+   9. RODAPÉ - COM PROTEÇÃO PARA PC
+   ====================================================== */
+
+/* Configurações que valem para todos */
+.fat-footer {
+    background-color: #162e48;
+    color: #ffffff;
+    padding: 50px 20px 30px;
+    border-top: 4px solid #f39c12;
+}
+
+/* --- ENVELOPE DE PROTEÇÃO PARA O PC --- */
+@media (min-width: 1025px) {
+    .footer-container-principal {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 50px;
+    }
+
+    .bloco-identidade {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .bloco-servicos-seo {
+        flex: 3;
+    }
+
+    .grade-interna-servicos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 25px;
+    }
+}
+/* --- FIM DO ENVELOPE DO PC --- */
+
+/* Regras de aparência (Não mexi em nada aqui) */
+.logo-footer { height: 75px; width: auto; margin-bottom: 20px; }
+.logo-footer-texto { display: inline-block; font-weight: bold; font-size: 1.1rem; margin-bottom: 5px; color: #ffffff; }
+.cnpj-destaque { font-size: 13px; font-weight: bold; color: #f39c12; margin-bottom: 25px; }
+
+.contato-horario h3, .pagamento-footer h3 {
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); 
+    padding-bottom: 5px;
+    margin: 20px 0 10px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.contato-horario p, .pagamento-footer p { font-size: 13px; margin-bottom: 8px; color: #ffffff; }
+.contato-horario i, .pagamento-footer i { color: #FFA500; margin-right: 10px; }
+
+.col-servico h3 { font-size: 13px; color: #FFA500; margin-bottom: 12px; text-transform: uppercase; }
+.col-servico p { font-size: 11.5px; line-height: 1.6; color: #bdc3c7; text-align: justify; }
+
+.footer-final { text-align: center; margin-top: 50px; }
+.linha-decorativa { height: 1px; background: rgba(243, 156, 18, 0.3); margin-bottom: 20px; }
+.footer-final p { font-size: 12px; color: #aeb6b8; }
+
+.whatsapp-fixo { position: fixed; bottom: 30px; right: 30px; background: #136b33; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: flex; align-items: center; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); z-index: 9999; }
+
+
+
+
+
+
+
+
+
+
+/* ======================================================
+   REGRA PARA TABLETS (APENAS EM PÉ - PORTRAIT)
+   Quando deitar, o site vira o "PC" automaticamente
+   ====================================================== */
+@media (min-width: 481px) and (max-width: 1024px) and (orientation: portrait) {
+
+    
+    
+   /* ======================================================
+       3. BANNER PRINCIPAL (HERO) - AJUSTE TABLET EM PÉ
+       ====================================================== */
+    .hero-container { 
+        max-width: 95%; 
+        margin: 20px auto; 
+        display: flex; 
+        flex-direction: column; /* 🎯 Coloca o texto em cima e imagem embaixo */
+        height: auto !important; /* 🎯 Mata os 480px fixos para o container crescer */
+        border-radius: 10px; 
+        overflow: hidden; 
+        box-shadow: 0 25px 50px rgba(0,0,0,0.1); 
+        background: white; 
+    }
+
+    /* 🎯 AJUSTE DA PARTE LARANJA (HERO TEXT) */
+    .hero-text { 
+        width: 100% !important; 
+        background-color: #f39c12; 
+        /* Aumentei o primeiro valor (topo e baixo) para 60px para dar "corpo" */
+        padding: 60px 40px !important; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; /* Centraliza tudo para ficar elegante */
+        text-align: center;
+    }
+
+    .hero-text h1 { 
+        font-size: 2.5rem; /* Aumentei um pouquinho para dar mais destaque */
+        line-height: 1.2; 
+        margin-bottom: 15px; 
+    }
+
+    .hero-text p { 
+        font-size: 1.25rem; 
+        line-height: 1.4;
+        margin-bottom: 20px;
+        max-width: 90%; /* Evita que o texto encoste nas bordas laterais */
+    }
+
+    .hero-badge { 
+        margin-top: 25px; /* Ajuste para o selo não ficar colado no texto */
+    }
+
+    
+    
+/* 🎯 AJUSTE DE PROPORÇÃO EXATA (1000x727) */
+    .hero-carrossel { 
+        width: 100% !important; 
+        /* Isso trava o carrossel no formato da sua foto! */
+        aspect-ratio: 1000 / 727 !important; 
+        height: auto !important; /* Deixa a altura ser definida pela proporção acima */
+        position: relative; 
+        overflow: hidden; 
+        background: #222; 
+    }
+
+    .slide img { 
+        width: 100% !important; 
+        height: 100% !important; 
+        /* Agora usamos o cover, mas ele não vai dar zoom porque o "buraco" é do mesmo tamanho da foto */
+        object-fit: cover !important; 
+    }
+
+    /* Mantém sua animação original */
+    .slides-container { display: flex; width: 600%; height: 100%; animation: carrossel-animado 24s infinite; }
+    .slide { width: 100%; height: 100%; position: relative;}
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+  
+  
+  
+  
+    /* ======================================================
+    4. SESSÃO DE CHAMADA URGENTE (AJUSTE TABLET)
+   ====================================================== */
+.chamada-urgente { background: radial-gradient(circle, rgba(243, 156, 18, 0.08) 0%, #ffffff 80%); padding: 40px 20px; text-align: center; width: 100%; }
+
+.container-impacto { max-width: 1100px; margin: 0 auto; }
+
+/* 🎯 AJUSTE DE COLUNAS: Garante que no tablet o grid não quebre para 1 coluna */
+.bloco-problemas { 
+    display: grid !important; 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 15px 20px; 
+    margin-bottom: 20px; 
+}
+
+.item-problema { font-family: 'Verdana', Geneva, sans-serif; font-size: 1.25rem; color: #162e48; font-weight: 600; font-style: italic; opacity: 0; transform: translateY(10px); animation: entradaLista 0.8s ease-out forwards; }
+
+/* Mantendo seus Delays Originais */
+.p1 { animation-delay: 0.5s; } .p2 { animation-delay: 1.0s; } .p3 { animation-delay: 1.5s; } .p4 { animation-delay: 2.0s; } .p5 { animation-delay: 2.5s; } .p6 { animation-delay: 3.0s; }
+
+.solucao { grid-column: 1 / -1; font-family: 'Arial Black', sans-serif; font-size: 3rem; color: #333; text-transform: uppercase; opacity: 0; animation: entradaMestre 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 4s forwards, respiroVida 4s ease-in-out 6s infinite; }
+
+.solucao span { color: #f39c12; }
+
+/* Suas Keyframes Originais Intactas */
+@keyframes entradaLista { to { opacity: 0.8; transform: translateY(0); } }
+@keyframes entradaMestre { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes respiroVida { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); text-shadow: 0 0 15px rgba(243, 156, 18, 0.2); } }
+   
+   
+   
+   
+    
+  
+    
+    
+    
+    /* 4. VÍDEO + FAQ */
+    .faq-video-container {
+        flex-direction: column; 
+        gap: 40px;
+    }
+
+    .faq-box, .video-box-clean {
+        width: 100%;
+    }
+
+    /* 5. RODAPÉ */
+    .footer-container-principal {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .bloco-servicos-seo { grid-column: span 2; }
+    .grade-interna-servicos { grid-template-columns: repeat(2, 1fr); }
+
+    
+    
+    /* 6. PORTFÓLIO E GALERIA */
+    .overlay-mestre {
+        padding: 60px 15px 30px;
+    }
+
+    .grade-fotos-overlay {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        max-width: 95%;
+        transform: none;
+        margin: 20px auto;
+    }
+
+    .grade-fotos-overlay img {
+        height: 240px;
+        opacity: 1;
+        transform: none;
+        animation: entrarCruzado 0.8s ease forwards; 
+    }
+
+    /* BOTÃO FECHAR - TRAVADO NO CANTO */
+    .botao-fechar-overlay {
+        position: fixed;
+        top: 20px; 
+        right: 20px; 
+        font-size: 14px;
+        padding: 12px 25px;
+        opacity: 1;
+        z-index: 1000001;
+    }
+
+} /* <--- FIM DA REGRA SÓ PARA MODO EM PÉ */
+
+/* Nas faixas de tablet existentes, aguarda o gatilho de rolagem.
+   Pausar preserva os atrasos e evita reiniciar a animacao a cada rolagem.
+   Ao receber .animar, voltam a valer as animacoes originais. */
+@media (min-width: 481px) and (max-width: 1024px) and (orientation: portrait),
+       (min-width: 481px) and (max-width: 1366px) and (orientation: landscape) {
+    .chamada-urgente:not(.animar) .item-problema,
+    .chamada-urgente:not(.animar) .solucao {
+        animation-play-state: paused;
+    }
+}
+
+/* ======================================================
+   REGRA PARA TABLET DEITADO (LANDSCAPE)
+   Faz o cabeçalho subir com a página
+   ====================================================== */
+@media (min-width: 481px) and (max-width: 1366px) and (orientation: landscape) {
+
+    /* Faz o cabeçalho deixar de ser fixo e subir com o scroll */
+    header, .header-principal, #header { 
+        position: absolute !important; 
+        top: 0 !important;
+    }
+
+ /* 1. O Cabeçalho sobe com a página */
+    header, .header-principal, #header { 
+        position: absolute !important; 
+        top: 0 !important;
+    }
+
+    /* 2. 🎯 AJUSTE DE RESPIRO: Empurra o Hero para baixo para não grudar no menu */
+    .hero-container, #home, .sessao-inicial { 
+        margin-top: 140px !important; /* Ajuste esse valor (80px, 90px...) até ficar na distância que você gosta */
+    }
+
+   
+}
+
+
