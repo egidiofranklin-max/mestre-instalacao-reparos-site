@@ -24,9 +24,11 @@ header {
     transform: translateY(-100%);
 }
 
-.logo-img {
-    height: 75px;
-}
+/* Marca no celular em pé */
+.marca { gap: 8px; }
+.marca-icone { height: 52px; }
+.marca-mestre { font-size: 1.3rem; letter-spacing: 2.5px; }
+.marca-sub { font-size: 0.62rem; letter-spacing: 0.3px; white-space: nowrap; }
 
 /* Botão do topo: mostra só o número */
 .botao-header-whats {
@@ -44,6 +46,25 @@ header {
     content: "(61) 98214-8809";
     font-size: 1.1rem;
     letter-spacing: -0.5px;
+}
+
+/* Celulares pequenos (até 380px): marca e botão um pouco menores */
+@media (max-width: 380px) {
+    .marca { gap: 6px; }
+    .marca-icone { height: 46px; }
+    .marca-mestre { font-size: 1.1rem; letter-spacing: 2px; }
+    .marca-sub { font-size: 0.55rem; letter-spacing: 0; }
+    .botao-header-whats { width: 128px; }
+    .botao-header-whats::after { font-size: 1rem; }
+}
+
+/* Celulares muito pequenos (até 340px) */
+@media (max-width: 340px) {
+    .marca-icone { height: 40px; }
+    .marca-mestre { font-size: 0.95rem; }
+    .marca-sub { font-size: 0.5rem; }
+    .botao-header-whats { width: 116px; }
+    .botao-header-whats::after { font-size: 0.9rem; }
 }
 
 /* ======================================================
@@ -436,10 +457,10 @@ header {
         box-shadow: none;
     }
 
-    .logo-img {
-        width: 85px;
-        height: auto;
-    }
+    /* Marca no celular deitado */
+    .marca-icone { height: 64px; }
+    .marca-mestre { font-size: 1.6rem; letter-spacing: 3px; }
+    .marca-sub { font-size: 0.75rem; letter-spacing: 0.8px; }
 
     .botao-header-whats {
         font-size: 15px;
