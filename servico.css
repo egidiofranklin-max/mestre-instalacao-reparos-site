@@ -140,6 +140,7 @@
    2. TEXTO DO SERVIÇO
    ====================================================== */
 .servico-conteudo {
+    width: calc(100% - 40px); /* Nunca encosta nas bordas da tela */
     max-width: 1100px;
     margin: 60px auto;
     padding: 56px 64px;
@@ -271,6 +272,7 @@
     }
 
     .servico-conteudo {
+        width: auto;
         margin: 40px 15px 110px; /* Espaço para o botão flutuante */
         padding: 36px 24px;
     }
