@@ -1,0 +1,356 @@
+/* ======================================================
+   PÁGINAS DE SERVIÇO (hidráulica e as próximas)
+   Carregado depois do style.css e do mobile.css.
+   ====================================================== */
+
+/* ======================================================
+   1. VITRINE: CAIXA PRINCIPAL COM FUNDO DE METAL
+   Mesmo fundo da seção "Áreas de Atendimento" da home
+   ====================================================== */
+.vitrine {
+    padding: 90px 20px 45px;
+    background-color: #b0b0b0;
+    background-image:
+        radial-gradient(circle at 50% 10%, rgba(255,255,255,0.8) 0%, transparent 70%),
+        linear-gradient(to right, rgba(0,0,0,0.1) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.1) 100%);
+}
+
+/* Palco onde as duas áreas se sobrepõem */
+.vitrine-palco {
+    position: relative;
+    max-width: 1100px;
+    height: 627px;
+    margin: 0 auto;
+}
+
+/* Área 2: painel da apresentação (fica atrás) */
+.vitrine-area2 {
+    position: absolute;
+    top: 167px;
+    left: 4.3%;
+    width: 63.6%;
+    height: 460px;
+    background-color: #162e48;
+    border-radius: 14px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+/* Texto na parte da área 2 que a foto não cobre */
+.vitrine-texto {
+    position: absolute;
+    top: 44px;
+    left: 40px;
+    width: calc(54.7% - 80px);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.vitrine-texto h1 {
+    color: #ffffff;
+    font-size: 2.1rem;
+    line-height: 1.12;
+    font-weight: 800;
+}
+
+.vitrine-linha {
+    width: 56px;
+    height: 4px;
+    border-radius: 50px;
+    background-color: #f39c12;
+}
+
+.vitrine-texto p {
+    color: #dfe6ee;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Linha laranja no canto livre da área 2, ao lado da foto */
+.vitrine-orcamento {
+    position: absolute;
+    bottom: 40px;
+    left: 60.4%;
+    width: 240px;
+    color: #f39c12;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+/* Área 1: foto (fica na frente) */
+.vitrine-area1 {
+    position: absolute;
+    top: 0;
+    left: 39.1%;
+    width: 60%;
+    height: 432px;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: #26303b;
+    box-shadow: 0 35px 70px rgba(0,0,0,0.35);
+}
+
+.vitrine-area1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Espaço reservado enquanto a foto não é escolhida */
+.vitrine-foto-vazia {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    color: #c9d2dc;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Botão do WhatsApp das páginas de serviço */
+.btn-servico-whats {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    background-color: #136b33;
+    color: #ffffff;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.btn-servico-whats:hover { background-color: #0e662e; }
+
+/* ======================================================
+   2. TEXTO DO SERVIÇO
+   ====================================================== */
+.servico-conteudo {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 56px 64px;
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(22,46,72,0.12);
+}
+
+.servico-conteudo h2 {
+    color: #162e48;
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.servico-linha {
+    width: 60px;
+    height: 4px;
+    border-radius: 50px;
+    background-color: #f39c12;
+    margin: 12px 0 28px;
+}
+
+.servico-colunas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+}
+
+.servico-colunas p {
+    color: #444;
+    font-size: 1.06rem;
+    line-height: 1.7;
+}
+
+/* Fechamento: pergunta + botões */
+.servico-chamada {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid #e1e8ed;
+}
+
+.servico-chamada > p {
+    color: #162e48;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.servico-acoes {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.link-voltar {
+    white-space: nowrap;
+    color: #162e48;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ======================================================
+   3. TABLET DEITADO E NOTEBOOK (481px a 1366px, deitado)
+   O cabeçalho sobe com a página, então a vitrine desce
+   ====================================================== */
+@media (min-width: 481px) and (max-width: 1366px) and (orientation: landscape) {
+    .vitrine { padding-top: 200px; }
+}
+
+/* ======================================================
+   4. CELULAR E TABLET EM PÉ
+   Foto em cima, apresentação embaixo, ainda sobrepostas
+   ====================================================== */
+@media (max-width: 1024px) and (orientation: portrait) {
+    .vitrine { padding: 110px 15px 40px; }
+
+    .vitrine-palco {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .vitrine-area1 {
+        position: relative;
+        top: auto;
+        left: auto;
+        order: 1;
+        width: 92%;
+        height: 240px;
+        margin-left: auto;
+        z-index: 2;
+    }
+
+    .vitrine-area2 {
+        position: relative;
+        top: auto;
+        left: auto;
+        order: 2;
+        width: 92%;
+        height: auto;
+        margin-top: -40px;
+        padding: 70px 24px 28px;
+    }
+
+    .vitrine-texto {
+        position: static;
+        width: auto;
+        align-items: center;
+        text-align: center;
+    }
+
+    .vitrine-texto h1 { font-size: 1.7rem; }
+
+    .btn-servico-whats { align-self: center; }
+
+    .vitrine-orcamento {
+        position: static;
+        width: auto;
+        margin-top: 22px;
+        text-align: center;
+    }
+
+    .servico-conteudo {
+        margin: 40px 15px 110px; /* Espaço para o botão flutuante */
+        padding: 36px 24px;
+    }
+
+    .servico-conteudo h2 { font-size: 1.35rem; }
+    .servico-colunas { grid-template-columns: 1fr; gap: 18px; }
+
+    .servico-chamada {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .servico-acoes {
+        flex-direction: column-reverse;
+        gap: 18px;
+    }
+}
+
+/* Celulares pequenos: botão um pouco menor para caber numa linha */
+@media (max-width: 380px) {
+    .btn-servico-whats { padding: 12px 18px; font-size: 0.8rem; }
+    .vitrine-area2 { padding-left: 18px; padding-right: 18px; }
+}
+
+/* Tablet em pé: foto maior */
+@media (min-width: 481px) and (max-width: 1024px) and (orientation: portrait) {
+    .vitrine-area1 { height: 380px; }
+    .vitrine-area2 { padding: 80px 60px 36px; }
+}
+
+/* ======================================================
+   5. CELULAR DEITADO
+   Mesma sobreposição do PC, em tamanho reduzido
+   ====================================================== */
+@media (max-width: 932px) and (orientation: landscape) {
+    .vitrine { padding: 130px 20px 30px; }
+
+    .vitrine-palco { height: 390px; }
+
+    .vitrine-area2 {
+        top: 70px;
+        left: 0;
+        width: 62%;
+        height: 320px;
+    }
+
+    .vitrine-texto {
+        top: 26px;
+        left: 26px;
+        width: calc(71% - 52px);
+        gap: 12px;
+    }
+
+    .vitrine-texto h1 { font-size: 1.45rem; }
+    .vitrine-texto p { font-size: 0.85rem; line-height: 1.5; }
+    .btn-servico-whats { padding: 11px 18px; font-size: 0.8rem; }
+
+    .vitrine-orcamento {
+        bottom: 22px;
+        left: 74%;
+        width: 22%;
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .vitrine-area1 {
+        left: 44%;
+        width: 56%;
+        height: 260px;
+    }
+
+    .servico-conteudo {
+        margin: 30px 20px;
+        padding: 30px 36px;
+    }
+
+    .servico-colunas p { font-size: 0.95rem; }
+    .servico-chamada > p { font-size: 1.05rem; }
+    .servico-acoes { gap: 18px; }
+}
+
+/* Celular deitado pequeno (até 480px de largura): cabeçalho não fica sobreposto */
+@media (max-width: 480px) and (orientation: landscape) {
+    .vitrine { padding-top: 30px; }
+}
