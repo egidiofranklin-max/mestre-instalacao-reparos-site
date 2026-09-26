@@ -37,27 +37,33 @@ header {
 .marca-mestre { color: #f39c12; font-size: 2.1rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; }
 .marca-sub { color: #ffffff; font-size: 0.95rem; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; }
 
-nav a { text-decoration: none; color: #ffffff; margin-left: 25px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-nav a:hover { color: #f39c12; }
-
-/* Botão de orçamento (WhatsApp) */
-.botao-header-whats {
-    background-color: #f39c12;
-    color: #162e48 !important;
-    padding: 14px 10px;
-    border-radius: 15px;
+/* Contato no topo: "CONTATO" + número (abre o WhatsApp) */
+.contato-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.1;
     text-decoration: none;
-    font-weight: 800;
-    font-size: 1rem;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
 }
 
-.botao-header-whats:hover {
-    background-color: #128c7e;
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+.contato-label {
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
+
+.contato-numero {
+    color: #f39c12;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.contato-header:hover .contato-numero { color: #ffb84d; }
 
 /* ======================================================
    3. BANNER PRINCIPAL (HERO)

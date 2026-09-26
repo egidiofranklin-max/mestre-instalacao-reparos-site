@@ -30,32 +30,17 @@ header {
 .marca-mestre { font-size: 1.3rem; letter-spacing: 2.5px; }
 .marca-sub { font-size: 0.62rem; letter-spacing: 0.3px; white-space: nowrap; }
 
-/* Botão do topo: mostra só o número */
-.botao-header-whats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0;
-    padding: 0;
-    width: 140px;
-    border-radius: 12px;
-    font-weight: 900;
-}
+/* Contato no topo (celular em pé) */
+.contato-label { font-size: 0.6rem; letter-spacing: 2px; }
+.contato-numero { font-size: 1.1rem; letter-spacing: 0; }
 
-.botao-header-whats::after {
-    content: "(61) 98214-8809";
-    font-size: 1.1rem;
-    letter-spacing: -0.5px;
-}
-
-/* Celulares pequenos (até 380px): marca e botão um pouco menores */
+/* Celulares pequenos (até 380px): marca e contato um pouco menores */
 @media (max-width: 380px) {
     .marca { gap: 6px; }
     .marca-icone { height: 46px; }
     .marca-mestre { font-size: 1.1rem; letter-spacing: 2px; }
     .marca-sub { font-size: 0.55rem; letter-spacing: 0; }
-    .botao-header-whats { width: 128px; }
-    .botao-header-whats::after { font-size: 1rem; }
+    .contato-numero { font-size: 0.95rem; }
 }
 
 /* Celulares muito pequenos (até 340px) */
@@ -63,8 +48,7 @@ header {
     .marca-icone { height: 40px; }
     .marca-mestre { font-size: 0.95rem; }
     .marca-sub { font-size: 0.5rem; }
-    .botao-header-whats { width: 116px; }
-    .botao-header-whats::after { font-size: 0.9rem; }
+    .contato-numero { font-size: 0.85rem; }
 }
 
 /* ======================================================
@@ -462,16 +446,9 @@ header {
     .marca-mestre { font-size: 1.6rem; letter-spacing: 3px; }
     .marca-sub { font-size: 0.75rem; letter-spacing: 0.8px; }
 
-    .botao-header-whats {
-        font-size: 15px;
-        padding: 13px 12px;
-        white-space: nowrap;
-        width: auto;
-    }
-
-    .botao-header-whats::after {
-        display: none; /* Esconde o número extra usado no celular em pé */
-    }
+    /* Contato no celular deitado */
+    .contato-label { font-size: 0.7rem; letter-spacing: 2.5px; }
+    .contato-numero { font-size: 1.35rem; }
 
     /* --- 9.2 BANNER PRINCIPAL (HERO) --- */
     .hero-container {
