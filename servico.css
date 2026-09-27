@@ -27,7 +27,7 @@
 .vitrine-area2 {
     position: absolute;
     top: 167px;
-    left: 4.3%;
+    left: 0;         /* Alinhado com a logo do topo e com o bloco de texto de baixo */
     width: 63.6%;
     height: 380px;
     background-color: #162e48;
@@ -39,8 +39,8 @@
 .vitrine-area1 {
     position: absolute;
     top: 0;
-    left: 39.1%;
-    width: 60%;
+    left: 40%;
+    width: 60%;      /* left + width = 100%: alinhado com o "Contato" do topo */
     height: 380px;
     border-radius: 14px;
     overflow: hidden;
@@ -53,7 +53,7 @@
     position: absolute;
     top: 44px;
     left: 40px;
-    width: calc(54.7% - 80px);
+    width: calc(62.9% - 80px); /* Parte do painel que a foto não cobre */
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -75,34 +75,45 @@
 
 .vitrine-texto p {
     color: #dfe6ee;
-    font-size: 1rem;
+    font-size: 1.125rem; /* 18px no PC */
     line-height: 1.6;
 }
 
-/* Orçamento grátis: no canto livre da área 2, ao lado da foto */
+/* Botão "Fale conosco" (abre o WhatsApp, sem cara de WhatsApp).
+   Mesmo formato do botão "Ver todos os serviços", em branco */
+.btn-fale-conosco {
+    align-self: flex-start;
+    background-color: #ffffff;
+    color: #162e48;
+    border: 2px solid #ffffff;
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-fale-conosco:hover {
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+
+/* Orçamento grátis: sozinho no canto livre da área 2, ao lado da foto */
 .vitrine-orcamento {
     position: absolute;
     bottom: 40px;
-    left: 60.4%;
-    width: 240px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.vitrine-orcamento strong {
+    left: 62.9%;     /* Começa alinhado com a borda esquerda da foto */
+    right: 20px;
     color: #f39c12;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 1.5px;
     line-height: 1.5;
     text-transform: uppercase;
-}
-
-.vitrine-orcamento span {
-    color: #dfe6ee;
-    font-size: 13px;
-    line-height: 1.5;
 }
 
 .vitrine-area1 img {
@@ -111,6 +122,36 @@
     object-fit: cover;
     object-position: center 10%; /* SOBE/DESCE o enquadramento da foto (0% = topo, 100% = base) */
     display: block;
+}
+
+/* Entrada da vitrine (uma vez, quando a página abre):
+   1º o painel azul sobe, 2º a foto desce por cima, 3º surgem os textos */
+.vitrine-area2 { animation: vitrineSobe 0.8s ease-out both; }
+.vitrine-area1 { animation: vitrineDesce 0.8s ease-out 0.3s both; }
+.vitrine-texto,
+.vitrine-orcamento { animation: vitrineSurge 0.6s ease-out 1s both; }
+
+@keyframes vitrineSobe {
+    from { opacity: 0; transform: translateY(30px); }  /* AUMENTA/DIMINUI a distância da subida */
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes vitrineDesce {
+    from { opacity: 0; transform: translateY(-30px); } /* AUMENTA/DIMINUI a distância da descida */
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes vitrineSurge {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Quem pede para reduzir movimento no aparelho vê a vitrine parada */
+@media (prefers-reduced-motion: reduce) {
+    .vitrine-area1,
+    .vitrine-area2,
+    .vitrine-texto,
+    .vitrine-orcamento { animation: none; }
 }
 
 /* Botão do WhatsApp das páginas de serviço */
@@ -201,12 +242,32 @@
 }
 
 .link-voltar {
+    display: inline-block;
     white-space: nowrap;
-    color: #162e48;
+    background-color: #162e48;
+    color: #ffffff;
+    border: 2px solid #f39c12;
+    padding: 12px 26px;
+    border-radius: 50px;
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 1px;
+    text-decoration: none;
     text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.link-voltar:hover {
+    background-color: #f39c12;
+    color: #162e48;
+}
+
+/* Computadores com tela menor (933px a 1199px): textos da vitrine um pouco menores
+   para caber no painel, que fica mais estreito */
+@media (min-width: 933px) and (max-width: 1199px) {
+    .vitrine-texto h1 { font-size: 1.9rem; }
+    .vitrine-texto p { font-size: 1rem; }
+    .vitrine-orcamento { font-size: 14px; }
 }
 
 /* ======================================================
@@ -260,14 +321,16 @@
     }
 
     .vitrine-texto h1 { font-size: 1.7rem; }
+    .vitrine-texto p { font-size: 1rem; }
+    .vitrine-orcamento { font-size: 13px; }
 
     .btn-servico-whats { align-self: center; }
+    .btn-fale-conosco { align-self: center; }
 
     .vitrine-orcamento {
         position: static;
         width: auto;
         margin-top: 22px;
-        align-items: center;
         text-align: center;
     }
 
@@ -310,35 +373,40 @@
 @media (max-width: 932px) and (orientation: landscape) {
     .vitrine { padding: 130px 20px 30px; }
 
-    .vitrine-palco { height: 390px; }
+    /* Palco = onde o painel azul termina (70px + 260px) */
+    .vitrine-palco { height: 330px; }
 
+    /* Painel azul com a mesma altura da foto (260px).
+       O texto e o orçamento ficam empilhados na coluna da esquerda */
     .vitrine-area2 {
         top: 70px;
         left: 0;
         width: 62%;
-        height: 320px;
+        height: 260px;
+        padding: 20px 24px;
+        display: flex;
+        flex-direction: column;
     }
 
     .vitrine-texto {
-        top: 26px;
-        left: 26px;
-        width: calc(71% - 52px);
-        gap: 12px;
+        position: static;
+        width: calc(71% - 14px); /* Parte do painel que a foto não cobre */
+        gap: 10px;
+        margin-bottom: 10px;
     }
 
-    .vitrine-texto h1 { font-size: 1.45rem; }
-    .vitrine-texto p { font-size: 0.85rem; line-height: 1.5; }
+    .vitrine-texto h1 { font-size: 1.4rem; }
+    .vitrine-texto p { font-size: 0.82rem; line-height: 1.45; }
     .btn-servico-whats { padding: 11px 18px; font-size: 0.8rem; }
+    .btn-fale-conosco { padding: 8px 20px; font-size: 0.78rem; }
 
     .vitrine-orcamento {
-        bottom: 22px;
-        left: 74%;
-        width: 22%;
-        gap: 4px;
+        position: static;
+        width: calc(71% - 14px);
+        margin-top: auto; /* Fica sempre no pé do painel */
+        font-size: 11px;
+        letter-spacing: 1px;
     }
-
-    .vitrine-orcamento strong { font-size: 10px; letter-spacing: 1px; }
-    .vitrine-orcamento span { font-size: 11px; }
 
     .btn-so-deitado { display: inline-flex; }
 
@@ -354,8 +422,45 @@
     }
 
     .servico-colunas p { font-size: 0.95rem; }
-    .servico-chamada > p { font-size: 1.05rem; }
-    .servico-acoes { gap: 18px; }
+
+    /* Fechamento: pergunta numa linha, botões de mesma largura embaixo, centralizados */
+    .servico-chamada {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .servico-chamada > p {
+        font-size: 1.05rem;
+        text-align: center;
+    }
+
+    .servico-acoes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        width: 100%;
+        max-width: 560px;
+    }
+
+    .servico-acoes .link-voltar,
+    .servico-acoes .btn-servico-whats {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+/* Celular deitado com tela menor (até 780px): vitrine um pouco mais compacta */
+@media (max-width: 780px) and (orientation: landscape) {
+    .vitrine-texto h1 { font-size: 1.2rem; }
+    .vitrine-texto p { font-size: 0.76rem; }
+    .btn-fale-conosco { padding: 7px 18px; font-size: 0.74rem; }
+}
+
+@media (max-width: 600px) and (orientation: landscape) {
+    .vitrine-texto h1 { font-size: 1.1rem; }
+    .vitrine-texto p { font-size: 0.72rem; }
 }
 
 /* Celular deitado pequeno (até 480px de largura): cabeçalho não fica sobreposto */

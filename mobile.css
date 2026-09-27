@@ -417,14 +417,38 @@ header {
     line-height: 1.4;
 }
 
-/* Botão flutuante do WhatsApp (centralizado embaixo) */
+/* Botão flutuante do WhatsApp (celular em pé):
+   redondo, só o símbolo, no canto direito, com uma tremidinha de tempos em tempos */
 .whatsapp-fixo {
-    right: 50%;
-    transform: translateX(50%);
-    bottom: 0;
-    width: 90%;
-    max-width: 320px;
+    right: 16px;          /* AUMENTA/DIMINUI a distância da borda direita */
+    bottom: 20px;         /* SOBE/DESCE o botão */
+    width: 60px;          /* Tamanho do círculo */
+    height: 60px;
+    padding: 0;
+    border-radius: 50%;
+    background: #ffffff;
     justify-content: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    animation: tremidinha 5s ease-in-out 2s infinite; /* 5s = intervalo entre uma tremidinha e outra */
+}
+
+.whatsapp-fixo .icone-whats {
+    width: 40px;          /* Tamanho do símbolo dentro do círculo */
+    margin-right: 0;
+}
+
+.whatsapp-fixo-texto { display: none; }
+
+@keyframes tremidinha {
+    0%, 84%, 100% { transform: rotate(0deg); }
+    87% { transform: rotate(-14deg); }
+    90% { transform: rotate(12deg); }
+    93% { transform: rotate(-8deg); }
+    96% { transform: rotate(5deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .whatsapp-fixo { animation: none; }
 }
 
 /* ======================================================
