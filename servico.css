@@ -467,3 +467,249 @@
 @media (max-width: 480px) and (orientation: landscape) {
     .vitrine { padding-top: 30px; }
 }
+
+/* ======================================================
+   6. VARIAÇÕES DA VITRINE (uma composição por página)
+   O esqueleto é o mesmo; muda só a arrumação dos dois cartões.
+   Cada página escolhe a sua pela classe no <main class="vitrine ...">:
+   - (sem classe extra)   hidráulica: painel à esquerda, foto à direita, em degrau
+   - vitrine--dividida    elétrica: cartão azul grande, foto saindo dele até a borda da tela
+   - vitrine--laranja     pintura: igual à hidráulica, com o painel laranja
+   - vitrine--capa        telhados: foto grande, painel sobre o canto esquerdo
+   - vitrine--capa-direita drywall: foto grande, painel sobre o canto direito
+   - vitrine--invertida   ar-condicionado: painel em cima, foto descendo por baixo
+   ====================================================== */
+
+/* Painel de metal escovado no lugar da foto (enquanto a foto não é escolhida) */
+.vitrine-foto-metal {
+    width: 100%;
+    height: 100%;
+    background-color: #9fa4a9;
+    background-image:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.07) 0 1px, rgba(0,0,0,0.04) 1px 3px),
+        linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 45%, rgba(0,0,0,0.18) 100%);
+}
+
+/* --- Pintura: painel laranja (vale em todas as telas) --- */
+.vitrine--laranja .vitrine-area2 { background-color: #f39c12; }
+.vitrine--laranja .vitrine-texto h1 { color: #162e48; }
+.vitrine--laranja .vitrine-texto p { color: #1a1a1a; }
+.vitrine--laranja .vitrine-linha { background-color: #162e48; }
+.vitrine--laranja .vitrine-orcamento { color: #162e48; }
+.vitrine--laranja .btn-fale-conosco:hover {
+    background-color: #162e48;
+    border-color: #162e48;
+    color: #ffffff;
+}
+
+/* --- Ar-condicionado: as peças entram ao contrário (painel desce, foto sobe) --- */
+.vitrine--invertida .vitrine-area2 { animation-name: vitrineDesce; }
+.vitrine--invertida .vitrine-area1 { animation-name: vitrineSobe; }
+
+/* ---------- PC, notebook e tablet deitado ---------- */
+@media (orientation: landscape) and (min-width: 933px), (min-width: 1025px) {
+
+    /* Telhados e drywall: foto grande, painel encaixado num canto */
+    .vitrine--capa .vitrine-palco,
+    .vitrine--capa-direita .vitrine-palco { height: 560px; }
+
+    .vitrine--capa .vitrine-area1,
+    .vitrine--capa-direita .vitrine-area1 {
+        left: 0;
+        width: 100%;
+        height: 470px;
+        z-index: 1;
+    }
+
+    .vitrine--capa .vitrine-area2,
+    .vitrine--capa-direita .vitrine-area2 {
+        top: auto;
+        bottom: 0;
+        left: 4%;
+        width: 440px;
+        height: auto;
+        padding: 40px 40px 36px;
+        display: flex;
+        flex-direction: column;
+        z-index: 2;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+    }
+
+    .vitrine--capa-direita .vitrine-area2 { left: auto; right: 4%; }
+
+    .vitrine--capa .vitrine-texto,
+    .vitrine--capa-direita .vitrine-texto { position: static; width: auto; }
+
+    .vitrine--capa .vitrine-orcamento,
+    .vitrine--capa-direita .vitrine-orcamento { position: static; margin-top: 22px; }
+
+    /* Ar-condicionado: painel em cima, foto descendo por baixo */
+    .vitrine--invertida .vitrine-area2 { top: 0; }
+    .vitrine--invertida .vitrine-area1 { top: 167px; }
+    .vitrine--invertida .vitrine-orcamento { top: 40px; bottom: auto; } /* Acima da foto */
+}
+
+/* ---------- Celular e tablet em pé ---------- */
+@media (max-width: 1024px) and (orientation: portrait) {
+
+    /* Ar-condicionado: painel em cima, foto embaixo subindo por cima dele */
+    .vitrine--invertida .vitrine-area2 {
+        order: 1;
+        margin-top: 0;
+        padding-top: 36px;
+        padding-bottom: 70px;
+    }
+
+    .vitrine--invertida .vitrine-area1 {
+        order: 2;
+        margin-top: -40px;
+    }
+
+    /* Telhados e drywall: foto maior, painel subindo por cima da parte de baixo dela */
+    .vitrine--capa .vitrine-area1,
+    .vitrine--capa-direita .vitrine-area1 {
+        width: 100%;
+        height: 300px;
+        z-index: 1;
+    }
+
+    .vitrine--capa .vitrine-area2,
+    .vitrine--capa-direita .vitrine-area2 {
+        margin-top: -90px;
+        padding-top: 36px;
+        z-index: 2;
+    }
+
+    .vitrine--capa .vitrine-area2 { margin-left: 0; margin-right: auto; }
+    .vitrine--capa-direita .vitrine-area2 { margin-left: auto; }
+}
+
+/* Tablet em pé: foto das capas maior */
+@media (min-width: 481px) and (max-width: 1024px) and (orientation: portrait) {
+    .vitrine--capa .vitrine-area1,
+    .vitrine--capa-direita .vitrine-area1 { height: 440px; }
+}
+
+/* ---------- Celular deitado ---------- */
+@media (max-width: 932px) and (orientation: landscape) {
+
+    /* Ar-condicionado: painel em cima, foto descendo por baixo */
+    .vitrine--invertida .vitrine-area2 { top: 0; }
+    .vitrine--invertida .vitrine-area1 { top: 70px; }
+
+    /* Telhados e drywall: foto na largura toda, painel encaixado num canto */
+    .vitrine--capa .vitrine-palco,
+    .vitrine--capa-direita .vitrine-palco { height: 340px; }
+
+    .vitrine--capa .vitrine-area1,
+    .vitrine--capa-direita .vitrine-area1 {
+        left: 0;
+        width: 100%;
+        height: 280px;
+        z-index: 1;
+    }
+
+    .vitrine--capa .vitrine-area2,
+    .vitrine--capa-direita .vitrine-area2 {
+        top: auto;
+        bottom: 0;
+        left: 3%;
+        width: 60%;
+        height: auto;
+        z-index: 2;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    .vitrine--capa-direita .vitrine-area2 { left: auto; right: 3%; }
+
+    .vitrine--capa .vitrine-texto,
+    .vitrine--capa-direita .vitrine-texto,
+    .vitrine--capa .vitrine-orcamento,
+    .vitrine--capa-direita .vitrine-orcamento { width: auto; }
+
+    .vitrine--capa .vitrine-orcamento,
+    .vitrine--capa-direita .vitrine-orcamento { margin-top: 12px; }
+}
+
+/* Elétrica: cartão azul grande, com o texto à esquerda e a foto saindo dele pela direita e por baixo */
+.vitrine--dividida .vitrine-area2 {
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+.vitrine--dividida { overflow: hidden; } /* A foto vai até a borda da tela sem criar rolagem lateral */
+.vitrine--dividida .vitrine-area1 {
+    z-index: 2;
+    border-radius: 12px 0 0 12px; /* Lado direito reto: encosta na borda da tela */
+    box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+}
+
+/* PC, notebook e tablet deitado */
+@media (orientation: landscape) and (min-width: 933px), (min-width: 1025px) {
+    .vitrine--dividida .vitrine-palco { height: 590px; } /* Cartão (540px) + a foto passando por baixo */
+    .vitrine--dividida .vitrine-area2 {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 540px;
+        padding: 0 0 0 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .vitrine--dividida .vitrine-texto { position: static; width: 40%; gap: 22px; }
+    .vitrine--dividida .vitrine-texto h1 { font-size: 3rem; line-height: 1.05; }
+    .vitrine--dividida .vitrine-texto p { font-size: 1.15rem; }
+    .vitrine--dividida .vitrine-orcamento { position: static; width: 40%; margin-top: 26px; font-size: 14px; }
+    /* Foto: começa dentro do laranja, passa pela direita até a borda da tela e desce 50px além do cartão */
+    .vitrine--dividida .vitrine-area1 {
+        top: 28px;
+        left: 50%;
+        right: calc((100vw - min(1100px, 100vw - 40px)) / -2);
+        width: auto;
+        height: 562px;
+    }
+}
+
+/* Celular e tablet em pé: foto em cima, saindo do cartão para cima e para a direita; texto embaixo */
+@media (max-width: 1024px) and (orientation: portrait) {
+    .vitrine--dividida { padding-top: 140px; padding-bottom: 40px; }
+    .vitrine--dividida .vitrine-palco { position: relative; }
+    .vitrine--dividida .vitrine-area2 {
+        order: 1;
+        width: 100%;
+        margin: 0;
+        padding: 250px 24px 32px; /* Espaço em cima para a foto */
+    }
+    .vitrine--dividida .vitrine-area1 {
+        position: absolute;
+        order: 2;
+        top: -40px;       /* Passa 40px acima do cartão */
+        left: 16px;
+        right: -15px;     /* Encosta na borda direita da tela */
+        width: auto;
+        height: 260px;
+        margin: 0;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) and (orientation: portrait) {
+    .vitrine--dividida .vitrine-area2 { padding-top: 370px; }
+    .vitrine--dividida .vitrine-area1 { top: -50px; left: 24px; height: 390px; }
+}
+
+/* Celular deitado */
+@media (max-width: 932px) and (orientation: landscape) {
+    .vitrine--dividida .vitrine-palco { height: 320px; }
+    .vitrine--dividida .vitrine-area2 {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0 0 0 26px;
+        justify-content: center;
+    }
+    .vitrine--dividida .vitrine-texto,
+    .vitrine--dividida .vitrine-orcamento { width: 44%; }
+    .vitrine--dividida .vitrine-orcamento { margin-top: 12px; }
+    .vitrine--dividida { padding-bottom: 60px; }
+    .vitrine--dividida .vitrine-area1 { top: 16px; left: 52%; right: -20px; width: auto; height: calc(100% + 14px); }
+}
