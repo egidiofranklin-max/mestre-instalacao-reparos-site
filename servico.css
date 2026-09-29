@@ -496,6 +496,8 @@
 .vitrine--laranja .vitrine-texto p { color: #1a1a1a; }
 .vitrine--laranja .vitrine-linha { background-color: #162e48; }
 .vitrine--laranja .vitrine-orcamento { color: #162e48; }
+/* Sombra da foto mais curta e mais clara, para não escurecer o painel laranja (PC e celular) */
+.vitrine--laranja .vitrine-area1 { box-shadow: 0 14px 28px rgba(0,0,0,0.25); } /* AUMENTA/DIMINUI a sombra da foto */
 .vitrine--laranja .btn-fale-conosco:hover {
     background-color: #162e48;
     border-color: #162e48;
@@ -511,6 +513,14 @@
 
 /* ---------- PC, notebook e tablet deitado ---------- */
 @media (orientation: landscape) and (min-width: 933px), (min-width: 1025px) {
+
+    /* Pintura: foto mais alta, descendo até perto do "Orçamento grátis" */
+    .vitrine--laranja .vitrine-area1 { height: 440px; } /* AUMENTA/DIMINUI a altura da foto */
+
+    /* Pintura: textos do painel mais para cima e título um pouco menor,
+       para o "Fale conosco" não encostar no pé do painel (o título é mais comprido) */
+    .vitrine--laranja .vitrine-texto { top: 32px; gap: 14px; } /* top: SOBE/DESCE o bloco de texto */
+    .vitrine--laranja .vitrine-texto h1 { font-size: 1.85rem; }
 
     /* Telhados e drywall: foto grande, painel encaixado num canto */
     .vitrine--capa .vitrine-palco,
@@ -561,6 +571,12 @@
     .vitrine--invertida .vitrine-area2 { top: 0; }
     .vitrine--invertida .vitrine-area1 { top: 167px; }
     .vitrine--invertida .vitrine-orcamento { top: 40px; bottom: auto; } /* Acima da foto */
+}
+/* Pintura em computador com tela menor: título menor e foto um pouco mais baixa,
+   porque o painel fica mais estreito e os textos ocupam mais linhas */
+@media (min-width: 933px) and (max-width: 1199px) and (orientation: landscape) {
+    .vitrine--laranja .vitrine-texto h1 { font-size: 1.6rem; }
+    .vitrine--laranja .vitrine-area1 { height: 425px; }
 }
 
 /* ---------- Celular e tablet em pé ---------- */
