@@ -24,11 +24,40 @@ document.querySelectorAll('.faq-pergunta').forEach(botao => {
 
 // ======================================================
 // 3. GATILHO DE ROLAGEM (SEÇÃO "O TELHADO VAZOU?")
-//    Adiciona a classe "animar" quando a seção aparece na tela
+//    - Celular (em pé e deitado): cada frase aparece quando
+//      entra na tela; o "Chama o Mestre" aparece por último,
+//      quando ele sobe na tela
+//    - PC e tablet: a seção inteira anima de uma vez
+//    - Anima uma vez só; atualizando a página, anima de novo
 // ======================================================
 const chamadaUrgente = document.querySelector('.chamada-urgente');
+const ehCelular = window.matchMedia('(max-width: 480px), (max-width: 932px) and (orientation: landscape)').matches;
 
-if (chamadaUrgente) {
+if (chamadaUrgente && ehCelular) {
+    const ESPACO = 250; // AJUSTE: tempo mínimo (ms) entre uma frase e outra
+    let proximaVez = 0;
+
+    const vigiaFrases = new IntersectionObserver(entries => {
+        entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left)
+            .forEach(entry => {
+                const agora = performance.now();
+                const espera = Math.max(0, proximaVez - agora);
+                proximaVez = agora + espera + ESPACO;
+                entry.target.style.animationDelay = entry.target.classList.contains('solucao')
+                    ? espera + 'ms, ' + (espera + 1400) + 'ms'   // Entrada + respiro depois
+                    : espera + 'ms';
+                entry.target.classList.add('visivel');
+                vigiaFrases.unobserve(entry.target); // Anima só uma vez
+            });
+    }, {
+        threshold: 0.6,                   // AJUSTE: 60% da frase visível
+        rootMargin: '0px 0px -8% 0px'     // AJUSTE: dispara um pouco acima do fim da tela
+    });
+
+    chamadaUrgente.querySelectorAll('.item-problema, .solucao').forEach(el => vigiaFrases.observe(el));
+} else if (chamadaUrgente) {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

@@ -87,8 +87,14 @@ header {
     margin-top: 20px;
     margin-bottom: 3px;
     font-weight: 750;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra preta 50%: contraste sem pesar */
+    color: #162e48; /* Azul do cabeçalho: contraste firme no amarelo, sem sombra */
 }
+
+/* Quebra de linha do título: só no celular em pé (mobile.css) */
+.quebra-celular { display: none; }
+
+/* Texto do banner: o longo aparece no PC, o curto no celular (mobile.css) */
+.texto-celular { display: none; }
 
 /* Texto do meio */
 .hero-text p {
@@ -109,7 +115,7 @@ header {
     background: none;
     font-weight: bold;
     font-size: 0.9rem;
-    text-align: center;
+    text-align: left; /* Alinhado com o título e o texto */
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: #1a1a1a;
@@ -568,7 +574,11 @@ header {
     mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }
 .avaliacoes-trilho { display: flex; gap: 20px; width: max-content; padding: 6px 0 12px; animation: avaliacoes-rolar var(--duracao, 45s) linear infinite; }
-.avaliacoes-faixa:hover .avaliacoes-trilho,
+/* Pausa com o mouse em cima: só em aparelho com mouse (no celular o toque "grudava" a pausa) */
+@media (hover: hover) and (pointer: fine) {
+    .avaliacoes-faixa:hover .avaliacoes-trilho { animation-play-state: paused; }
+}
+/* No celular: encostou o dedo, para; soltou, volta depois de 2,5s (script.js) */
 .avaliacoes-faixa.parado .avaliacoes-trilho { animation-play-state: paused; }
 @keyframes avaliacoes-rolar { to { transform: translateX(calc(-50% - 10px)); } }
 

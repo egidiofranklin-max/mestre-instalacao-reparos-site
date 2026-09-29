@@ -87,6 +87,51 @@ header {
     font-size: 0.7rem;
 }
 
+/* Texto do banner: no celular aparece a versão curta */
+.texto-pc { display: none; }
+.texto-celular { display: inline; }
+
+/* Celular em pé: painel amarelo com mais respiro e texto alinhado à esquerda */
+@media (max-width: 480px) {
+    .hero-container {
+        width: calc(100% - 2px); /* 1px de cada lado: quase encostando na tela */
+    }
+
+    .hero-text {
+        padding: 24px 20px 22px; /* Respiro interno do painel amarelo */
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .hero-text h1 {
+        font-size: 2.3rem;
+        line-height: 1.15;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* "Você chama," / "o Mestre resolve." */
+    .quebra-celular { display: inline; }
+
+    .hero-text p {
+        font-size: 1.2rem;
+        margin-top: 14px;
+        margin-bottom: 0;
+        line-height: 1.45;
+    }
+
+    .hero-badge {
+        margin-top: 16px;
+        text-align: left;
+    }
+}
+
+/* Celulares pequenos: título um pouco menor para não quebrar em 3 linhas */
+@media (max-width: 380px) {
+    .hero-text h1 { font-size: 2.05rem; }
+    .hero-text p { font-size: 1.1rem; }
+}
+
 .hero-carrossel {
     width: 100%;
     height: 290px;
@@ -144,6 +189,22 @@ header {
 .chamada-urgente.animar .solucao {
     animation: entradaMestre 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.2s forwards,
                respiroVida 4s ease-in-out 3.5s infinite !important;
+}
+
+/* Celular (em pé e deitado): cada frase aparece quando entra na tela.
+   A classe "visivel" é colocada pelo script.js, uma frase por vez. */
+.item-problema.visivel {
+    animation: entradaLista 0.8s ease-out forwards;
+}
+
+.solucao.visivel {
+    animation: entradaMestre 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+               respiroVida 4s ease-in-out 1.4s infinite;
+}
+
+/* No celular deitado, a regra dos tablets pausava as animações: aqui elas rodam */
+.chamada-urgente .visivel {
+    animation-play-state: running !important;
 }
 
 /* ======================================================
@@ -505,7 +566,7 @@ header {
         font-size: 1.63rem;
         font-weight: 900;
         line-height: 1.5;
-        color: #f8fbff;
+        color: #162e48;
         margin-bottom: 10px;
         text-transform: uppercase;
     }
