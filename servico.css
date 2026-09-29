@@ -502,6 +502,9 @@
     color: #ffffff;
 }
 
+/* --- Telhados: quando a foto precisa de corte, ele sai de baixo, preservando as mãos na calha --- */
+.vitrine--capa .vitrine-area1 img { object-position: center 25%; }
+
 /* --- Ar-condicionado: as peças entram ao contrário (painel desce, foto sobe) --- */
 .vitrine--invertida .vitrine-area2 { animation-name: vitrineDesce; }
 .vitrine--invertida .vitrine-area1 { animation-name: vitrineSobe; }
@@ -536,6 +539,17 @@
     }
 
     .vitrine--capa-direita .vitrine-area2 { left: auto; right: 4%; }
+
+    /* Telhados: foto média (16:9), cortando só um pouco do telhado e da base.
+       O palco cresce junto com a foto e o painel passa 60px abaixo dela */
+    .vitrine--capa .vitrine-palco { height: auto; padding-bottom: 60px; } /* AUMENTA/DIMINUI o quanto o painel passa da foto */
+    .vitrine--capa .vitrine-area1 {
+        position: relative;
+        top: auto;
+        height: auto;
+        aspect-ratio: 16 / 9;   /* ALTURA da foto: 3 / 2 = inteira; 2 / 1 = mais baixa */
+    }
+    .vitrine--capa .vitrine-area1 img { object-position: center 55%; } /* SOBE/DESCE o enquadramento */
 
     .vitrine--capa .vitrine-texto,
     .vitrine--capa-direita .vitrine-texto { position: static; width: auto; }
@@ -582,6 +596,13 @@
 
     .vitrine--capa .vitrine-area2 { margin-left: 0; margin-right: auto; }
     .vitrine--capa-direita .vitrine-area2 { margin-left: auto; }
+
+    /* Telhados: foto encostando nos dois lados da tela (passa por cima dos 15px de margem da vitrine) */
+    .vitrine--capa .vitrine-area1 {
+        width: calc(100% + 30px);
+        margin-left: -15px;
+        border-radius: 0;
+    }
 }
 
 /* Tablet em pé: foto das capas maior */
@@ -621,6 +642,15 @@
     }
 
     .vitrine--capa-direita .vitrine-area2 { left: auto; right: 3%; }
+
+    /* Telhados: foto inteira, igual ao PC, com o painel passando 100px abaixo dela */
+    .vitrine--capa .vitrine-palco { height: auto; padding-bottom: 100px; }
+    .vitrine--capa .vitrine-area1 {
+        position: relative;
+        top: auto;
+        height: auto;
+        aspect-ratio: 3 / 2;
+    }
 
     .vitrine--capa .vitrine-texto,
     .vitrine--capa-direita .vitrine-texto,
