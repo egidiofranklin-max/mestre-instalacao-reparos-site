@@ -561,6 +561,16 @@
     }
     .vitrine--capa .vitrine-area1 img { object-position: center 55%; } /* SOBE/DESCE o enquadramento */
 
+    /* Drywall: mesma foto média (16:9) dos telhados, com o painel passando 60px abaixo dela */
+    .vitrine--capa-direita .vitrine-palco { height: auto; padding-bottom: 60px; } /* AUMENTA/DIMINUI o quanto o painel passa da foto */
+    .vitrine--capa-direita .vitrine-area1 {
+        position: relative;
+        top: auto;
+        height: auto;
+        aspect-ratio: 16 / 9;   /* ALTURA da foto: 3 / 2 = inteira; 2 / 1 = mais baixa */
+    }
+    .vitrine--capa-direita .vitrine-area1 img { object-position: center 35%; } /* SOBE/DESCE o enquadramento */
+
     .vitrine--capa .vitrine-texto,
     .vitrine--capa-direita .vitrine-texto { position: static; width: auto; }
 
