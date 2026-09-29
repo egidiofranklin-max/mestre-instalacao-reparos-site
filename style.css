@@ -550,6 +550,51 @@ header {
 @keyframes fadeInSuave { to { opacity: 1; } }
 
 /* ======================================================
+   AVALIAÇÕES DO GOOGLE (carrossel abaixo da galeria)
+   ====================================================== */
+.secao-avaliacoes { background-color: #f8fafd; padding: 45px 0 40px; text-align: center; overflow: hidden; }
+.secao-avaliacoes[hidden] { display: none; }
+.secao-avaliacoes h2 { color: #162e48; font-weight: bold; margin-bottom: 8px; }
+
+.avaliacoes-nota { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 28px; color: #162e48; }
+.avaliacoes-numero { font-size: 2rem; font-weight: 900; line-height: 1; }
+.avaliacoes-estrelas { color: #f39c12; font-size: 1.35rem; letter-spacing: 3px; }
+.avaliacoes-fonte { font-size: 1rem; font-weight: bold; }
+
+/* Faixa que roda sozinha; as pontas somem suavemente */
+.avaliacoes-faixa {
+    max-width: 1100px; margin: 0 auto;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.avaliacoes-trilho { display: flex; gap: 20px; width: max-content; padding: 6px 0 12px; animation: avaliacoes-rolar var(--duracao, 45s) linear infinite; }
+.avaliacoes-faixa:hover .avaliacoes-trilho,
+.avaliacoes-faixa.parado .avaliacoes-trilho { animation-play-state: paused; }
+@keyframes avaliacoes-rolar { to { transform: translateX(calc(-50% - 10px)); } }
+
+.avaliacao-card {
+    width: 330px; flex-shrink: 0; text-align: left;
+    background: #ffffff; border: 1px solid #e3e8ef; border-radius: 10px;
+    padding: 20px 22px; box-shadow: 0 6px 18px rgba(22, 46, 72, 0.06);
+}
+.avaliacao-autor { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.avaliacao-foto { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.avaliacao-inicial { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: bold; font-size: 1.1rem; }
+.avaliacao-nome { display: block; color: #162e48; font-weight: bold; font-size: 0.95rem; line-height: 1.3; text-decoration: none; }
+.avaliacao-quando { display: block; color: #777; font-size: 0.78rem; }
+.avaliacao-estrelas { color: #f39c12; letter-spacing: 2px; font-size: 1rem; margin-bottom: 6px; }
+.avaliacao-texto { color: #333; font-size: 0.92rem; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+
+.avaliacoes-link { display: inline-block; margin-top: 22px; color: #162e48; font-weight: bold; font-size: 0.9rem; text-decoration: none; border-bottom: 1px solid #162e48; padding-bottom: 2px; }
+.avaliacoes-link:hover { color: #e0813b; border-bottom-color: #e0813b; }
+
+/* Quem prefere menos movimento: sem rolagem automática, arrasta com o dedo/mouse */
+@media (prefers-reduced-motion: reduce) {
+    .avaliacoes-trilho { animation: none; }
+    .avaliacoes-faixa { overflow-x: auto; -webkit-mask-image: none; mask-image: none; padding: 0 15px; }
+}
+
+/* ======================================================
    9. RODAPÉ
    ====================================================== */
 .fat-footer {

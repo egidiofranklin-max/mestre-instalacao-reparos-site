@@ -349,6 +349,17 @@ header {
 }
 
 /* ======================================================
+   AVALIAÇÕES DO GOOGLE
+   ====================================================== */
+.secao-avaliacoes { padding: 35px 0 30px; }
+.avaliacoes-nota { margin-bottom: 20px; }
+.avaliacoes-numero { font-size: 1.7rem; }
+.avaliacoes-estrelas { font-size: 1.15rem; }
+.avaliacoes-trilho { gap: 14px; }
+@keyframes avaliacoes-rolar { to { transform: translateX(calc(-50% - 7px)); } }
+.avaliacao-card { width: 78vw; max-width: 320px; padding: 18px; }
+
+/* ======================================================
    8. RODAPÉ E BOTÃO FLUTUANTE
    ====================================================== */
 .fat-footer {
