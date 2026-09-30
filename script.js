@@ -207,9 +207,11 @@ window.addEventListener('scroll', () => {
         const lista = (dados.reviews || []).filter(a => a.rating >= 4 && ((a.text && a.text.text) || (a.originalText && a.originalText.text)));
         if (!lista.length) return; // nada para mostrar: seção continua escondida
 
-        if (dados.rating) {
-            secao.querySelector('.avaliacoes-numero').textContent = dados.rating.toFixed(1).replace('.', ',');
-            secao.querySelector('.avaliacoes-estrelas').textContent = estrelas(dados.rating);
+        const numero = secao.querySelector('.avaliacoes-numero');
+        const estrelasNota = secao.querySelector('.avaliacoes-estrelas');
+        if (dados.rating && numero && estrelasNota) {
+            numero.textContent = dados.rating.toFixed(1).replace('.', ',');
+            estrelasNota.textContent = estrelas(dados.rating);
         }
         if (dados.googleMapsUri) secao.querySelector('.avaliacoes-link').href = dados.googleMapsUri;
 
