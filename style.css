@@ -128,7 +128,38 @@ header {
 .slides-container { display: flex; width: 600%; height: 100%; animation: carrossel-animado 24s infinite; }
 .slide { width: 100%; height: 100%; position: relative; }
 .slide img { width: 100%; height: 100%; object-fit: cover; }
-.legenda { position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); color: white; padding: 5px 15px; border-radius: 5px; font-size: 0.8rem; }
+.legenda { position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); color: white; padding: 5px 15px; border-left: 3px solid #f39c12; border-radius: 0 5px 5px 0; font-size: 0.8rem; }
+
+/* Legenda animada: a foto para, a caixa abre da esquerda, o texto entra;
+   a legenda sai antes da foto seguir. Mesmo ciclo de 24s do carrossel.
+   O ciclo de cada legenda recomeça no meio do tempo em que ela está sumida
+   (e não na hora de entrar), e só usa transparência e movimento: assim o
+   iPhone não pisca na virada do ciclo. */
+.legenda { transform-origin: left center; will-change: transform, opacity; animation: legenda-caixa 24s cubic-bezier(0.2, 0.7, 0.2, 1) infinite both; }
+.legenda span { display: inline-block; will-change: transform, opacity; animation: legenda-texto 24s cubic-bezier(0.2, 0.7, 0.2, 1) infinite both; }
+.slide:nth-child(1) .legenda, .slide:nth-child(1) .legenda span { animation-delay: -12s; }
+.slide:nth-child(2) .legenda, .slide:nth-child(2) .legenda span { animation-delay: -8s; }
+.slide:nth-child(3) .legenda, .slide:nth-child(3) .legenda span { animation-delay: -4s; }
+.slide:nth-child(4) .legenda, .slide:nth-child(4) .legenda span { animation-delay: -24s; }
+.slide:nth-child(5) .legenda, .slide:nth-child(5) .legenda span { animation-delay: -20s; }
+.slide:nth-child(6) .legenda, .slide:nth-child(6) .legenda span { animation-delay: -16s; }
+
+@keyframes legenda-caixa {
+    0%, 51.4%   { opacity: 0; transform: scaleX(0); }
+    51.5%       { opacity: 1; transform: scaleX(0); }
+    53.5%, 62.5% { opacity: 1; transform: scaleX(1); }
+    64%         { opacity: 0; transform: scaleX(1); }
+    65%, 100%   { opacity: 0; transform: scaleX(0); }
+}
+@keyframes legenda-texto {
+    0%, 53.3%   { opacity: 0; transform: translateX(-6px); }
+    55%, 64%    { opacity: 1; transform: none; }
+    65%, 100%   { opacity: 0; transform: translateX(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .legenda, .legenda span { animation: none; }
+}
 
 @keyframes carrossel-animado {
     0%, 15%      { transform: translateX(0); }
@@ -485,7 +516,30 @@ header {
     align-items: center;
 }
 
-.faq-pergunta::after { content: '\002B'; color: #f39c12; }
+/* Sem o flash do toque no celular/tablet (o foco pelo teclado continua visível) */
+.faq-pergunta { position: relative; -webkit-tap-highlight-color: transparent; }
+.faq-pergunta:focus:not(:focus-visible) { outline: none; }
+
+/* Cruzinha: duas barras; ao abrir, as duas giram e viram o sinal de menos */
+.faq-pergunta::after,
+.faq-pergunta::before {
+    content: '';
+    width: 12px;
+    height: 2px;
+    border-radius: 1px;
+    background: #f39c12;
+    transition: transform 0.4s ease;
+}
+.faq-pergunta::after { flex-shrink: 0; margin-left: 15px; }
+.faq-pergunta::before {
+    position: absolute;
+    right: 20px; /* mesmo recuo do texto: fica em cima da outra barra */
+    top: 50%;
+    margin-top: -1px;
+    transform: rotate(90deg);
+}
+.faq-pergunta.ativa::after { transform: rotate(180deg); }
+.faq-pergunta.ativa::before { transform: rotate(360deg); }
 .faq-pergunta.ativa { color: #f39c12; }
 .faq-resposta { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
 .faq-resposta p { padding: 0 20px 15px 20px; color: #555; font-size: 0.9rem; }
@@ -550,6 +604,15 @@ header {
 .botao-fechar-overlay { position: fixed; top: 120px; right: 220px; color: #fff; font-size: 13px; letter-spacing: 2px; cursor: pointer; z-index: 1000000; background-color: rgba(243, 156, 18, 0.7); padding: 10px 22px; border-radius: 30px; border: 1px solid #f39c12; text-transform: uppercase; opacity: 0; transition: 0.3s; }
 .botao-fechar-overlay:hover { background-color: rgba(243, 156, 18, 1); }
 .overlay-mestre.ativa .botao-fechar-overlay { animation: fadeInSuave 1s ease 2.8s forwards; }
+
+/* Galeria no PC e no tablet deitado: 2 colunas, mesma largura (alinhada ao cabeçalho).
+   Fotos inteiras (4:3); a entrada cruzada segue por linha: ímpares pela esquerda, pares pela direita */
+@media (min-width: 1025px), (min-width: 933px) and (orientation: landscape) {
+    .grade-fotos-overlay { grid-template-columns: repeat(2, 1fr); }
+    .grade-fotos-overlay img { height: auto; aspect-ratio: 4 / 3; }
+    .grade-fotos-overlay img:nth-child(4n+1), .grade-fotos-overlay img:nth-child(4n+2) { transform: translateX(-100px); }
+    .grade-fotos-overlay img:nth-child(4n+3), .grade-fotos-overlay img:nth-child(4n+4) { transform: translateX(100px); }
+}
 
 @keyframes escurecerPalco { to { background-color: rgba(10, 25, 41, 0.55); } }
 @keyframes entrarCruzado { to { opacity: 1; transform: translateX(0); } }
@@ -674,7 +737,8 @@ header {
 
     /* Hero: texto em cima, foto embaixo */
     .hero-container {
-        max-width: 95%;
+        width: calc(100% - 2px) !important; /* 1px de cada lado, igual ao celular */
+        max-width: none;
         margin: 20px auto;
         flex-direction: column;
         height: auto !important; /* Libera os 480px fixos do PC */
@@ -701,7 +765,7 @@ header {
     }
 
     .hero-badge {
-        margin-top: 25px;
+        display: none; /* Tablet em pé: sem a frase, igual ao celular */
     }
 
     /* Carrossel travado na proporção exata da foto (1000x727) */

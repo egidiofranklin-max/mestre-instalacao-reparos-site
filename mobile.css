@@ -347,6 +347,8 @@ header {
     padding: 15px;
 }
 
+.faq-pergunta::before { right: 15px; }
+
 .faq-resposta p {
     font-size: 0.85rem;
     line-height: 1.4;
@@ -833,4 +835,18 @@ header {
         transform: none;
         z-index: 1000002;              /* Acima de todas as fotos */
     }
+}
+
+/* ======================================================
+   10. PAINEL AMARELO: MESMO TEXTO DO PC, SEM A FRASE
+   - Celular (em pé e deitado) e tablet em pé: sem o
+     "Trabalho limpo e profissional" (no PC continua)
+   - Celular deitado pequeno (até 740px): letra um pouco
+     menor para ter respiro em cima e embaixo
+   ====================================================== */
+.hero-badge { display: none; }
+
+@media (orientation: landscape) and (max-width: 740px) {
+    .hero-text h1 { font-size: 1.35rem; line-height: 1.35; margin-bottom: 8px; }
+    .hero-text p { font-size: 0.85rem; line-height: 1.6; margin-bottom: 0; }
 }

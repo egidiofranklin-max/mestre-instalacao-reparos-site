@@ -11,6 +11,14 @@ function toggleGaleria() {
     document.body.style.overflow = overlay.classList.contains('ativa') ? 'hidden' : 'auto';
 }
 
+// Tecla ESC fecha a galeria
+document.addEventListener('keydown', function (e) {
+    const overlay = document.getElementById('galeria-overlay');
+    if (e.key === 'Escape' && overlay && overlay.classList.contains('ativa')) {
+        toggleGaleria();
+    }
+});
+
 // ======================================================
 // 2. DÚVIDAS FREQUENTES (FAQ SANFONA)
 // ======================================================
