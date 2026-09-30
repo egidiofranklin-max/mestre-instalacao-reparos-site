@@ -643,12 +643,15 @@ header {
 /* ======================================================
    AVALIAÇÕES DO GOOGLE (carrossel abaixo da galeria)
    ====================================================== */
-.secao-avaliacoes { background-color: #f8fafd; padding: 45px 0 40px; text-align: center; overflow: hidden; }
+.secao-avaliacoes { background-color: #f8fafd; padding: 55px 0 40px; text-align: center; overflow: hidden; }
 .secao-avaliacoes[hidden] { display: none; }
+/* Título "Avaliações dos clientes": some da tela, mas continua no código
+   para o Google e para leitores de tela */
+.titulo-escondido { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .secao-avaliacoes h2 { color: #162e48; font-weight: bold; margin-bottom: 8px; }
 
 /* Selo "Google ★★★★★ Perfil verificado" embaixo do título */
-.selo-google-avaliacoes { display: block; width: 300px; max-width: 80%; margin: 4px auto 30px; }
+.selo-google-avaliacoes { display: block; width: 300px; max-width: 80%; margin: 0 auto 30px; }
 .selo-google-avaliacoes img { display: block; width: 100%; height: auto; }
 
 .avaliacoes-nota { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 28px; color: #162e48; }
