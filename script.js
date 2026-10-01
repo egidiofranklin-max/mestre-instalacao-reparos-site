@@ -1,4 +1,32 @@
 // ======================================================
+// 0. ROLAGEM SUAVE
+//    - Ao atualizar ou voltar, o navegador reposiciona a página
+//      sozinho; nesses casos a rolagem suave só liga depois que
+//      a página terminou de carregar, para não deslizar na tela
+//    - Nos outros casos (como o "Ver todos os serviços") liga
+//      na hora, e continua deslizando como antes
+// ======================================================
+(function () {
+    const raiz = document.documentElement;
+    const navegacao = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    const tipo = navegacao ? navegacao.type : '';
+    const ligar = () => raiz.classList.add('rolagem-suave');
+
+    if (tipo === 'reload' || tipo === 'back_forward') {
+        const depoisDeCarregar = () => setTimeout(ligar, 600);
+        if (document.readyState === 'complete') depoisDeCarregar();
+        else window.addEventListener('load', depoisDeCarregar);
+    } else {
+        ligar();
+    }
+
+    // Voltou para a página pelo histórico (página guardada na memória)
+    window.addEventListener('pageshow', (e) => {
+        if (e.persisted) { raiz.classList.remove('rolagem-suave'); setTimeout(ligar, 600); }
+    });
+})();
+
+// ======================================================
 // 1. GALERIA DE FOTOS (PORTFÓLIO)
 //    Chamada pelos botões "VER GALERIA" e "FECHAR" no HTML
 // ======================================================
@@ -86,19 +114,26 @@ if (chamadaUrgente && ehCelular) {
 //    e volta ao rolar para cima (efeito no celular)
 // ======================================================
 const header = document.querySelector('header');
+const ZONA_TOPO = 10;   // AJUSTE: nos primeiros 10px do topo o cabeçalho fica sempre aparecendo
+const TOLERANCIA = 6;   // AJUSTE: movimentos menores que 6px não escondem nem mostram
 let ultimoScroll = 0;
 
 window.addEventListener('scroll', () => {
     const scrollAtual = window.scrollY;
 
-    if (scrollAtual <= 0) {
+    // Topo da página (inclui o "quique" do iPhone ao puxar para atualizar)
+    if (scrollAtual <= ZONA_TOPO) {
         header.classList.remove('header-escondido');
+        ultimoScroll = Math.max(scrollAtual, 0);
         return;
     }
 
-    if (scrollAtual > ultimoScroll) {
+    const diferenca = scrollAtual - ultimoScroll;
+    if (Math.abs(diferenca) < TOLERANCIA) return;      // Movimento pequeno: ignora
+
+    if (diferenca > 0) {
         header.classList.add('header-escondido');      // Rolando para baixo
-    } else if (scrollAtual < ultimoScroll) {
+    } else {
         header.classList.remove('header-escondido');   // Rolando para cima
     }
 

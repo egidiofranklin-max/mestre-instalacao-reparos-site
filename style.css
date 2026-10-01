@@ -1,7 +1,9 @@
 /* ======================================================
    1. RESET E CONFIGURAÇÕES GERAIS
    ====================================================== */
-html { scroll-behavior: smooth; }
+/* Rolagem suave: só liga depois que a página termina de carregar (script.js),
+   para não deslizar quando o navegador reposiciona a página ao atualizar */
+html.rolagem-suave { scroll-behavior: smooth; }
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', Arial, sans-serif; }
 body { background-color: #f5f5f5; color: #333; line-height: 1.6; }
 
