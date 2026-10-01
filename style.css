@@ -747,6 +747,8 @@ header {
 
 .col-servico h3 { font-size: 13px; color: #FFA500; margin-bottom: 12px; text-transform: uppercase; }
 .col-servico p { font-size: 11.5px; line-height: 1.6; color: #bdc3c7; text-align: justify; }
+.col-servico h3 a { color: inherit; text-decoration: none; }
+.col-servico h3 a:hover, .col-servico h3 a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
 
 .footer-final { text-align: center; margin-top: 50px; }
 .linha-decorativa { height: 1px; background: rgba(243, 156, 18, 0.3); margin-bottom: 20px; }
