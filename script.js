@@ -296,3 +296,22 @@ window.addEventListener('scroll', () => {
         carregar();
     }
 })();
+
+
+// ======================================================
+// 6. VÍDEO "O MESTRE EM AÇÃO"
+//    - A página abre só com a capa do vídeo; o player do
+//      YouTube (cerca de 1 MB) só carrega quando o cliente
+//      toca no play, e aí o vídeo já começa a tocar
+// ======================================================
+document.querySelectorAll('.video-capa').forEach((capa) => {
+    capa.addEventListener('click', (e) => {
+        e.preventDefault();
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + capa.dataset.video + '?autoplay=1&playsinline=1';
+        iframe.title = 'O Mestre em Ação';
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        iframe.allowFullscreen = true;
+        capa.replaceWith(iframe);
+    });
+});

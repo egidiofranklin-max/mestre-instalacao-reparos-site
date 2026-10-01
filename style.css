@@ -596,6 +596,49 @@ header {
     object-fit: cover;
 }
 
+/* Capa do vídeo (no lugar do YouTube até o cliente tocar no play) */
+.video-capa {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background-color: #000;
+    cursor: pointer;
+}
+.video-capa img {               /* A capa do YouTube vem com faixas pretas em cima e embaixo:
+                                   esticar 1/3 para cima e para baixo deixa as faixas fora do quadro */
+    position: absolute;
+    left: 0;
+    top: -16.67%;
+    width: 100%;
+    height: 133.34%;
+    object-fit: cover;
+    display: block;
+}
+.video-play {                   /* Botão de play */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 68px;                /* AUMENTA/DIMINUI o tamanho do botão */
+    height: 68px;
+    margin: -34px 0 0 -34px;
+    border-radius: 50%;
+    background-color: rgba(204, 0, 0, 0.9);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.video-play::after {            /* Triângulo branco do play */
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -13px 0 0 -8px;
+    border-style: solid;
+    border-width: 13px 0 13px 22px;
+    border-color: transparent transparent transparent #fff;
+}
+.video-capa:hover .video-play,
+.video-capa:focus-visible .video-play { transform: scale(1.08); background-color: #cc0000; }
+
 /* Botão do WhatsApp do vídeo: escondido no PC */
 .btn-whats-video-land {
     display: none !important;
